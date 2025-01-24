@@ -5,17 +5,16 @@ import { Table } from "react-bootstrap";
 import { Button } from "react-bootstrap";
 import BandTableRow from "./BandTableRow";
 import { AxiosDataSource } from "../../../framework/axios/axios.datasource";
-import BandConstant from "./band.constant";
 import { useNavigate } from "react-router-dom";
 import { RouterNavigatorDataSource } from "../../../framework/react_router/router.datasource";
 
 const BandList = () => {
     const [bands, setBands] = useState([])
-    const bandConstant = new BandConstant()
+    const axiosDataSource = new AxiosDataSource()
     const router = new RouterNavigatorDataSource()
 
     useEffect(() => {
-        new AxiosDataSource().makeGetRequest(bandConstant.HTTP_REQUEST_PATH, (response) => {
+        axiosDataSource.makeGetRequest(axiosDataSource.HTTP_REQUEST_PATH, (response) => {
             setBands(response.data);
         }, (error) => {
             console.log(`YESFERAL: BandList: error: ${error}`);

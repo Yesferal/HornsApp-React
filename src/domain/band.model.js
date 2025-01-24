@@ -1,8 +1,6 @@
 /* Copyright © 2025 Yesferal Cueva. All rights reserved. */
 
-class BandConstant {
-    HTTP_REQUEST_PATH = "band"
-
+class BandModel {
     EMPTY_MODEL = {
         name: null,
         genre: null,
@@ -22,4 +20,4 @@ class BandConstant {
     }
 }
 
-export default BandConstant
+export default BandModel

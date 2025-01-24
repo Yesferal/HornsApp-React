@@ -4,7 +4,6 @@ import React from "react";
 import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { AxiosDataSource } from "../../../framework/axios/axios.datasource";
-import BandConstant from "./band.constant";
 import { RouterNavigatorDataSource } from "../../../framework/react_router/router.datasource";
 
 const BandTableRow =
@@ -14,11 +13,11 @@ const BandTableRow =
             name,
             genre
         } = props.obj;
-        const bandConstant = new BandConstant()
+        const axiosDataSource = new AxiosDataSource()
         const router = new RouterNavigatorDataSource()
 
         const deleteBand = () => {
-            new AxiosDataSource().makeDeleteRequest(`${bandConstant.HTTP_REQUEST_PATH}/${_id}`, (response) => {
+            axiosDataSource.makeDeleteRequest(`${axiosDataSource.HTTP_REQUEST_PATH}/${_id}`, (response) => {
                 if (response.status === 200) {
                     alert("Band successfully deleted");
                     window.location.reload();

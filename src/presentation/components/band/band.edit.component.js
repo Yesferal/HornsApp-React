@@ -10,19 +10,20 @@ import { useNavigate, useParams } from "react-router-dom";
 import BandForm from "./BandForm";
 import { AxiosDataSource } from "../../../framework/axios/axios.datasource";
 import { RouterNavigatorDataSource } from "../../../framework/react_router/router.datasource";
-import BandConstant from "./band.constant";
+import BandModel from "../../../domain/band.model";
 
 const EditBand = (props) => {
     const { id } = useParams();
-    const bandConstant = new BandConstant()
+    const bandModel = new BandModel()
+    const axiosDataSource = new AxiosDataSource()
     const myNavigate = useNavigate()
     const router = new RouterNavigatorDataSource()
 
     const [formValues, setFormValues] =
-        useState(bandConstant.EMPTY_MODEL);
+        useState(bandModel.EMPTY_MODEL);
 
     const onSubmit = (bandObject) => {
-        new AxiosDataSource().makePutRequest(`${bandConstant.HTTP_REQUEST_PATH}/${id}`, bandObject, (response) => {
+        axiosDataSource.makePutRequest(`${axiosDataSource.HTTP_REQUEST_PATH}/${id}`, bandObject, (response) => {
             if (response.status === 200) {
                 alert("Band successfully updated");
                 myNavigate(router.BAND_LIST)
@@ -35,7 +36,7 @@ const EditBand = (props) => {
     };
 
     useEffect(() => {
-        new AxiosDataSource().makeGetRequest(`${bandConstant.HTTP_REQUEST_PATH}/${id}`, (response) => {
+        new AxiosDataSource().makeGetRequest(`${axiosDataSource.HTTP_REQUEST_PATH}/${id}`, (response) => {
             const {
                 name,
                 genre,
