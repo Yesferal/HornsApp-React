@@ -1,11 +1,12 @@
 /* Copyright © 2024 Yesferal Cueva. All rights reserved. */
 
-import { useNavigate } from "react-router-dom";
+export class RouterNavigatorDataSource {
+    HOME = '/'
 
-export class RouterDataSource {
-    navigate = useNavigate();
-
-    navigateTo(path) {
-        this.navigate(path);
-    }
+    /**
+     * BAND SECTION
+     */
+    BAND_LIST = '/band-list'
+    BAND_CREATE = '/create-band'
+    BAND_EDIT = "/edit-band"
 }
