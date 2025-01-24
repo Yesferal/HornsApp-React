@@ -21,11 +21,11 @@ export class AxiosDataSource {
         axios
             .get(`${this.baseUrl}/${path}`, this.config)
             .then((response) => {
-                console.log(`YESFERAL: HornsAppAxios: response: ${response}`);
+                console.log(`YESFERAL: HornsAppAxios: Get: response: ${response}`);
                 onSuccess(response);
             })
             .catch((error) => {
-                console.log(`YESFERAL: HornsAppAxios: error: ${error}`);
+                console.log(`YESFERAL: HornsAppAxios: Get: error: ${error}`);
                 onError(error);
             });
     }
@@ -33,11 +33,11 @@ export class AxiosDataSource {
     makePostRequest(path, object, onSuccess, onError) {
         axios.post(`${this.baseUrl}/${path}`, object, this.config)
             .then(response => {
-                console.log(`YESFERAL: HornsAppAxios: response: ${response}`);
+                console.log(`YESFERAL: HornsAppAxios: Post: response: ${response}`);
                 onSuccess(response)
             })
             .catch((error) => {
-                console.log(`YESFERAL: HornsAppAxios: error: ${error}`);
+                console.log(`YESFERAL: HornsAppAxios: Post: error: ${error}`);
                 onError(error);
             });
     }
@@ -46,11 +46,11 @@ export class AxiosDataSource {
         axios
             .put(`${this.baseUrl}/${path}`, object, this.config)
             .then((response) => {
-                console.log(`YESFERAL: HornsAppAxios: response: ${response}`);
+                console.log(`YESFERAL: HornsAppAxios: Put: response: ${response}`);
                 onSuccess(response)
             })
             .catch((error) => {
-                console.log(`YESFERAL: HornsAppAxios: error: ${error}`);
+                console.log(`YESFERAL: HornsAppAxios: Put: error: ${error}`);
                 onError(error);
             });
     }
@@ -59,11 +59,11 @@ export class AxiosDataSource {
         axios
             .delete(`${this.baseUrl}/${path}`, this.config)
             .then((response) => {
-                console.log(`YESFERAL: HornsAppAxios: response: ${response.data}`);
+                console.log(`YESFERAL: HornsAppAxios: Delete: response: ${response.data}`);
                 onSuccess(response)
             })
             .catch((error) => {
-                console.log(`YESFERAL: HornsAppAxios: error: ${error}`);
+                console.log(`YESFERAL: HornsAppAxios: Delete: error: ${error}`);
                 onError(error);
             });
     }
