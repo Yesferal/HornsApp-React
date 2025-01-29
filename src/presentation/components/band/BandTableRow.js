@@ -17,7 +17,7 @@ const BandTableRow =
         const router = new RouterNavigatorDataSource()
 
         const deleteBand = () => {
-            axiosDataSource.makeDeleteRequest(`${axiosDataSource.HTTP_REQUEST_PATH}/${_id}`, (response) => {
+            axiosDataSource.makeDeleteRequest(`${axiosDataSource.HTTP_BAND_REQUEST_PATH}/${_id}`, (response) => {
                 if (response.status === 200) {
                     alert("Band successfully deleted");
                     window.location.reload();

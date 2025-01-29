@@ -4,7 +4,7 @@ import axios from "axios";
 import { Environment } from "../env/env.datasource";
 
 export class AxiosDataSource {
-    HTTP_REQUEST_PATH = "band"
+    HTTP_BAND_REQUEST_PATH = "band"
    
     baseUrl = new Environment().BASE_URL;
     auth = new Environment().APP_AUTH;

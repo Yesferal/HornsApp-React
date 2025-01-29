@@ -1,44 +1,21 @@
 /* Copyright © 2025 Yesferal Cueva. All rights reserved. */
 
-// Import Modules
-import React,
-{
-    useState,
-} from "react";
-import BandForm from "./BandForm";
 import { AxiosDataSource } from "../../../framework/axios/axios.datasource";
 import { RouterNavigatorDataSource } from "../../../framework/react_router/router.datasource";
-import { useNavigate } from "react-router-dom";
 import BandModel from "../../../domain/band.model";
+import { BaseCreateComponent } from "../base.create.component";
+import { initBandForm } from "./BandForm";
 
 const CreateBand = () => {
-    const bandModel = new BandModel()
     const axiosDataSource = new AxiosDataSource()
-    const myNavigate = useNavigate()
+    const path = axiosDataSource.HTTP_BAND_REQUEST_PATH
+    const bandModel = new BandModel()
+    const emptyModel = bandModel.EMPTY_MODEL
     const router = new RouterNavigatorDataSource()
+    const redirect = router.BAND_LIST
+    const initForm = initBandForm
 
-    const [formValues] = useState(bandModel.EMPTY_MODEL)
-
-    const onSubmit = bandObject => {
-        axiosDataSource.makePostRequest(axiosDataSource.HTTP_REQUEST_PATH, bandObject, (response) => {
-            if (response.status === 200) {
-                alert('Band successfully created')
-                myNavigate(router.BAND_LIST)
-            } else {
-                Promise.reject();
-            }
-        }, (error) => {
-            console.log(`YESFEERAL: BandList: error: ${error}`);
-        });
-    }
-
-    return (
-        <BandForm initialValues={formValues}
-            onSubmit={onSubmit}
-            enableReinitialize>
-            Create Band
-        </BandForm>
-    )
+    return BaseCreateComponent(path, emptyModel, redirect, initForm)
 }
 
 export default CreateBand

@@ -14,7 +14,7 @@ const BandList = () => {
     const router = new RouterNavigatorDataSource()
 
     useEffect(() => {
-        axiosDataSource.makeGetRequest(axiosDataSource.HTTP_REQUEST_PATH, (response) => {
+        axiosDataSource.makeGetRequest(axiosDataSource.HTTP_BAND_REQUEST_PATH, (response) => {
             setBands(response.data);
         }, (error) => {
             console.log(`YESFERAL: BandList: error: ${error}`);

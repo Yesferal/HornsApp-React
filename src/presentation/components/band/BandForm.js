@@ -10,6 +10,16 @@ import {
     FormGroup, Button, FormLabel
 } from "react-bootstrap";
 
+export function initBandForm(formValues, onSubmit, title) {
+    return (
+        <BandForm initialValues={formValues}
+            onSubmit={onSubmit}
+            enableReinitialize>
+            {title}
+        </BandForm>
+    )
+}
+
 const BandForm = (props) => {
     
     const validationSchema =

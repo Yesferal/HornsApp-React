@@ -23,7 +23,7 @@ const EditBand = (props) => {
         useState(bandModel.EMPTY_MODEL);
 
     const onSubmit = (bandObject) => {
-        axiosDataSource.makePutRequest(`${axiosDataSource.HTTP_REQUEST_PATH}/${id}`, bandObject, (response) => {
+        axiosDataSource.makePutRequest(`${axiosDataSource.HTTP_BAND_REQUEST_PATH}/${id}`, bandObject, (response) => {
             if (response.status === 200) {
                 alert("Band successfully updated");
                 myNavigate(router.BAND_LIST)
@@ -31,12 +31,12 @@ const EditBand = (props) => {
                 Promise.reject();
             }
         }, (error) => {
-            console.log(`YESFEERAL: BandList: error: ${error}`);
+            console.log(`YESFERAL: BandList: error: ${error}`);
         });
     };
 
     useEffect(() => {
-        new AxiosDataSource().makeGetRequest(`${axiosDataSource.HTTP_REQUEST_PATH}/${id}`, (response) => {
+        new AxiosDataSource().makeGetRequest(`${axiosDataSource.HTTP_BAND_REQUEST_PATH}/${id}`, (response) => {
             const {
                 name,
                 genre,
