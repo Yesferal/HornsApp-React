@@ -8,16 +8,16 @@ export function BaseCreateComponent(path, emptyModel, redirect, initForm) {
     const axiosDataSource = new AxiosDataSource()
     const myNavigate = useNavigate()
     const [formValues] = useState(emptyModel)
-    const onSubmit = bandObject => {
-        axiosDataSource.makePostRequest(path, bandObject, (response) => {
+    const onSubmit = myObject => {
+        axiosDataSource.makePostRequest(path, myObject, (response) => {
             if (response.status === 200) {
-                alert(`${path} successfully created`)
+                alert(`Object successfully created`)
                 myNavigate(redirect)
             } else {
                 Promise.reject();
             }
         }, (error) => {
-            console.log(`YESFERAL: ${path}: error: ${error}`);
+            console.log(`YESFERAL: Create: error: ${error}`);
         });
     }
 

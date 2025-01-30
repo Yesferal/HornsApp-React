@@ -6,6 +6,10 @@ import { Link } from "react-router-dom";
 import { AxiosDataSource } from "../../../framework/axios/axios.datasource";
 import { RouterNavigatorDataSource } from "../../../framework/react_router/router.datasource";
 
+export function initBandTable(res, i) {
+    return <BandTableRow obj={res} key={i} />
+}
+
 const BandTableRow =
     (props) => {
         const {

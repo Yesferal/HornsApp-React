@@ -13,9 +13,8 @@ const CreateBand = () => {
     const emptyModel = bandModel.EMPTY_MODEL
     const router = new RouterNavigatorDataSource()
     const redirect = router.BAND_LIST
-    const initForm = initBandForm
 
-    return BaseCreateComponent(path, emptyModel, redirect, initForm)
+    return BaseCreateComponent(path, emptyModel, redirect, initBandForm)
 }
 
 export default CreateBand

@@ -14,22 +14,22 @@ export function BaseEditComponent(path, emptyModel, redirect, initForm) {
         new AxiosDataSource().makeGetRequest(path, (response) => {
             setFormValues(response.data);
         }, (error) => {
-            console.log(`YESFERAL: BandList: error: ${error}`);
+            console.log(`YESFERAL: Edit: error: ${error}`);
         });
     }, []);
 
-    const onSubmit = (bandObject) => {
-            axiosDataSource.makePutRequest(path, bandObject, (response) => {
-                if (response.status === 200) {
-                    alert("Band successfully updated");
-                    myNavigate(redirect)
-                } else {
-                    Promise.reject();
-                }
-            }, (error) => {
-                console.log(`YESFERAL: BandList: error: ${error}`);
-            });
-        };
+    const onSubmit = (myObject) => {
+        axiosDataSource.makePutRequest(path, myObject, (response) => {
+            if (response.status === 200) {
+                alert("Object successfully updated");
+                myNavigate(redirect)
+            } else {
+                Promise.reject();
+            }
+        }, (error) => {
+            console.log(`YESFERAL: Edit: error: ${error}`);
+        });
+    };
 
     return initForm(formValues, onSubmit, "Edit")
 }
