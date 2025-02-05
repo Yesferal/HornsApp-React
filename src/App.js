@@ -25,6 +25,7 @@ import EditBand from
 import BandList from
   "./presentation/components/band/band.list.component.js";
 import { RouterNavigatorDataSource } from "./framework/react_router/router.datasource.js";
+import ConcertList from "./presentation/components/concert/concert.list.component.js";
 
 // My App
 const App = () => {
@@ -45,6 +46,12 @@ const App = () => {
 
               <Nav className="justify-content-end">
                 <Nav>
+                  <Link to={router.CONCERT_LIST}
+                    className="nav-link">
+                    Concert Admin
+                  </Link>
+                </Nav>
+                <Nav>
                   <Link to={router.BAND_LIST}
                     className="nav-link">
                     Band Admin
@@ -61,7 +68,9 @@ const App = () => {
               <div className="wrapper">
                 <Routes>
                   <Route exact path={router.HOME}
-                    element={<BandList />} />
+                    element={<ConcertList />} />
+                  <Route path={router.CONCERT_LIST}
+                    element={<ConcertList />} />
                   <Route path={router.BAND_CREATE}
                     element={<CreateBand />} />
                   <Route path={router.BAND_EDIT + '/:id'}

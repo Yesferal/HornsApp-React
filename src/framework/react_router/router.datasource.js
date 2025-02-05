@@ -8,5 +8,12 @@ export class RouterNavigatorDataSource {
      */
     BAND_LIST = '/band-list'
     BAND_CREATE = '/create-band'
-    BAND_EDIT = "/edit-band"
+    BAND_EDIT = '/edit-band'
+
+    /**
+     * CONCERT SECTION
+     */
+    CONCERT_LIST = '/concert-list'
+    CONCERT_CREATE = '/create-concert'
+    CONCERT_EDIT = '/edit-concert'
 }
