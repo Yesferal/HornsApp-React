@@ -4,7 +4,7 @@ import axios from "axios";
 import { Environment } from "../env/env.datasource";
 
 export class AxiosDataSource {
-    HTTP_BAND_REQUEST_PATH = "band"
+    HTTP_BAND_REQUEST_PATH = "admin_band"
     HTTP_CONCERT_REQUEST_PATH = "concert"
    
     baseUrl = new Environment().BASE_URL;
