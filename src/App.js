@@ -17,14 +17,14 @@ import {
   Route, Link
 } from "react-router-dom";
 
-// Import my React Components
-import CreateBand from
-  "./presentation/components/band/band.create.component.js";
-import EditBand from
-  "./presentation/components/band/band.edit.component.js";
-import BandList from
-  "./presentation/components/band/band.list.component.js";
 import { RouterNavigatorDataSource } from "./framework/react_router/router.datasource.js";
+
+// Import my React Components
+import CreateBand from "./presentation/components/band/band.create.component.js";
+import EditBand from "./presentation/components/band/band.edit.component.js";
+import BandList from "./presentation/components/band/band.list.component.js";
+import CreateConcert from "./presentation/components/concert/concert.create.component.js";
+import EditConcert from "./presentation/components/concert/concert.edit.component.js";
 import ConcertList from "./presentation/components/concert/concert.list.component.js";
 
 // My App
@@ -69,6 +69,10 @@ const App = () => {
                 <Routes>
                   <Route exact path={router.HOME}
                     element={<ConcertList />} />
+                  <Route path={router.CONCERT_CREATE}
+                    element={<CreateConcert />} />
+                  <Route path={router.CONCERT_EDIT + '/:id'}
+                    element={<EditConcert />} />
                   <Route path={router.CONCERT_LIST}
                     element={<ConcertList />} />
                   <Route path={router.BAND_CREATE}
