@@ -10,37 +10,37 @@ import {
     FormGroup, Button, FormLabel
 } from "react-bootstrap";
 
-export function initBandForm(formValues, onSubmit, title) {
+export function initConcertForm(formValues, onSubmit, title) {
     return (
-        <BandForm initialValues={formValues}
+        <ConcertForm initialValues={formValues}
             onSubmit={onSubmit}
             enableReinitialize>
             {title}
-        </BandForm>
+        </ConcertForm>
     )
 }
 
-const BandForm = (props) => {
-
+const ConcertForm = (props) => {
     const validationSchema =
         Yup.object().shape({
             name: Yup.string().required("Required"),
-            genre: Yup.string().required("Required"),
-            formerIn: Yup.number()
-                .positive("Invalid roll number")
-                .integer("Invalid roll number")
-                .nullable(),
             about: Yup.object().shape({
                 en: Yup.string().nullable(),
                 es: Yup.string().nullable(),
             }),
-            country: Yup.object().shape({
-                en: Yup.string().nullable(),
-                es: Yup.string().nullable(),
-            }),
+            dateTime: Yup.date(),
             images: Yup.object().shape({
-                logo: Yup.string(),
-                members: Yup.string(),
+                headliner: Yup.string(),
+                poster: Yup.string().nullable()
+            }),
+            genre: Yup.string().nullable(),
+            ticketing: Yup.object().shape({
+                name: Yup.string().nullable(),
+                url: Yup.string().nullable(),
+            }),
+            trailer: Yup.object().shape({
+                image: Yup.string().nullable(),
+                url: Yup.string().nullable(),
             })
         });
 
@@ -72,30 +72,6 @@ const BandForm = (props) => {
                         />
                     </FormGroup>
                     <FormGroup>
-                        <FormLabel for="genre">Genre</FormLabel>
-                        <Field name="genre"
-                            type="text"
-                            className="form-control" />
-                        <ErrorMessage
-                            name="genre"
-                            className="d-block 
-                                invalid-feedback"
-                            component="span"
-                        />
-                    </FormGroup>
-                    <FormGroup>
-                        <FormLabel for="formerIn">Former In</FormLabel>
-                        <Field name="formerIn"
-                            type="number"
-                            className="form-control" />
-                        <ErrorMessage
-                            name="formerIn"
-                            className="d-block 
-                                invalid-feedback"
-                            component="span"
-                        />
-                    </FormGroup>
-                    <FormGroup>
                         <FormLabel for="about.en">About (EN)</FormLabel>
 
                         <div className="control">
@@ -106,8 +82,7 @@ const BandForm = (props) => {
                                 placeholder="About (EN)" />
                             <ErrorMessage
                                 name="about.en"
-                                className="d-block 
-                                    invalid-feedback"
+                                className="d-block invalid-feedback"
                                 component="span"
                             />
                         </div>
@@ -124,56 +99,43 @@ const BandForm = (props) => {
                             <ErrorMessage
                                 name="about.es"
                                 className="d-block 
-                                        invalid-feedback"
+                                    invalid-feedback"
                                 component="span"
                             />
                         </div>
                     </FormGroup>
                     <FormGroup>
-                        <FormLabel for="country.en">Country (EN)</FormLabel>
-                        <Field name="country.en"
+                        <FormLabel for="dateTime">DateTime</FormLabel>
+                        <Field name="dateTime"
                             type="text"
                             className="form-control" />
                         <ErrorMessage
-                            name="country.en"
+                            name="dateTime"
                             className="d-block 
                                 invalid-feedback"
                             component="span"
                         />
                     </FormGroup>
                     <FormGroup>
-                        <FormLabel for="country.es">Country (ES)</FormLabel>
-                        <Field name="country.es"
+                        <FormLabel for="images.headliner">Headliner Image(URL)</FormLabel>
+                        <Field name="images.headliner"
                             type="text"
                             className="form-control" />
+                        <Field name="images.headliner" component={CustomInputComponent} />
                         <ErrorMessage
-                            name="country.es"
+                            name="images.headliner"
                             className="d-block 
                                 invalid-feedback"
                             component="span"
                         />
                     </FormGroup>
                     <FormGroup>
-                        <FormLabel for="images.logo">Logo Image(URL)</FormLabel>
-                        <Field name="images.logo"
+                        <FormLabel for="genre">Genre</FormLabel>
+                        <Field name="genre"
                             type="text"
                             className="form-control" />
-                        <Field name="images.logo" component={CustomInputComponent} />
                         <ErrorMessage
-                            name="images.logo"
-                            className="d-block 
-                                invalid-feedback"
-                            component="span"
-                        />
-                    </FormGroup>
-                    <FormGroup>
-                        <FormLabel for="images.members">Member Image(URL)</FormLabel>
-                        <Field name="images.members"
-                            type="text"
-                            className="form-control" />
-                        <Field name="images.members" component={CustomInputComponent} />
-                        <ErrorMessage
-                            name="images.members"
+                            name="genre"
                             className="d-block 
                                 invalid-feedback"
                             component="span"
@@ -189,4 +151,4 @@ const BandForm = (props) => {
     );
 };
 
-export default BandForm;
+export default ConcertForm;
