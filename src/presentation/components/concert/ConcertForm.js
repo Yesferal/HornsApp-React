@@ -129,18 +129,6 @@ const ConcertForm = (props) => {
                             component="span"
                         />
                     </FormGroup>
-                    <FormGroup>
-                        <FormLabel for="genre">Genre</FormLabel>
-                        <Field name="genre"
-                            type="text"
-                            className="form-control" />
-                        <ErrorMessage
-                            name="genre"
-                            className="d-block 
-                                invalid-feedback"
-                            component="span"
-                        />
-                    </FormGroup>
                     <Button variant="danger" size="lg"
                         block="block" type="submit">
                         {props.children}

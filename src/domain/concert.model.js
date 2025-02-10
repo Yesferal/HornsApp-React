@@ -8,11 +8,10 @@ class ConcertModel {
             es: null
         },
         dateTime: null,
-        images: Yup.object().shape({
+        images: {
             headliner: null,
             poster: null,
-        }),
-        genre: null,
+        },
         ticketing: {
             name: null,
             url: null
