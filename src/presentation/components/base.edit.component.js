@@ -11,12 +11,12 @@ export function BaseEditComponent(path, emptyModel, redirect, initForm) {
     const [formValues, setFormValues] = useState(emptyModel);
 
     useEffect(() => {
-        new AxiosDataSource().makeGetRequest(path, (response) => {
+        axiosDataSource.makeGetRequest(path, (response) => {
             setFormValues(response.data);
         }, (error) => {
             console.log(`YESFERAL: Edit: error: ${error}`);
         });
-    }, []);
+    });
 
     const onSubmit = (myObject) => {
         axiosDataSource.makePutRequest(path, myObject, (response) => {
