@@ -9,6 +9,7 @@ import {
 import {
     FormGroup, Button, FormLabel
 } from "react-bootstrap";
+import { PreviewImageComponent } from "../common/preview.image.component";
 
 export function initBandForm(formValues, onSubmit, title) {
     return (
@@ -43,17 +44,6 @@ const BandForm = (props) => {
                 members: Yup.string(),
             })
         });
-
-    const CustomInputComponent = ({
-        field, // { name, value, onChange, onBlur }
-        form, // also values, setXXXX, handleXXXX, dirty, isValid, status, etc.
-    }) => {
-        return (
-            <div>
-                <img src={field.value} alt={field.name} />
-            </div>
-        )
-    };
 
     return (
         <div className="form-wrapper">
@@ -158,7 +148,7 @@ const BandForm = (props) => {
                         <Field name="images.logo"
                             type="text"
                             className="form-control" />
-                        <Field name="images.logo" component={CustomInputComponent} />
+                        <Field name="images.logo" component={PreviewImageComponent} />
                         <ErrorMessage
                             name="images.logo"
                             className="d-block 
@@ -171,7 +161,7 @@ const BandForm = (props) => {
                         <Field name="images.members"
                             type="text"
                             className="form-control" />
-                        <Field name="images.members" component={CustomInputComponent} />
+                        <Field name="images.members" component={PreviewImageComponent} />
                         <ErrorMessage
                             name="images.members"
                             className="d-block 
@@ -179,6 +169,9 @@ const BandForm = (props) => {
                             component="span"
                         />
                     </FormGroup>
+                    <div>
+                        &nbsp;
+                    </div>
                     <Button variant="danger" size="lg"
                         block="block" type="submit">
                         {props.children}

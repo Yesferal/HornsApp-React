@@ -10,6 +10,7 @@ import {
     FormGroup, Button, FormLabel
 } from "react-bootstrap";
 import { MultiSelectComponent } from "../common/multi.select.component";
+import { PreviewImageComponent } from "../common/preview.image.component";
 
 export function initConcertForm(formValues, onSubmit, title) {
     return (
@@ -51,17 +52,6 @@ const ConcertForm = (props) => {
         { value: 'POP', label: 'Pop' },
         { value: 'ROCK', label: 'Rock' },
     ]
-
-    const CustomInputComponent = ({
-        field, // { name, value, onChange, onBlur }
-        form, // also values, setXXXX, handleXXXX, dirty, isValid, status, etc.
-    }) => {
-        return (
-            <div>
-                <img src={field.value} alt={field.name} />
-            </div>
-        )
-    };
 
     return (
         <div className="form-wrapper">
@@ -129,7 +119,7 @@ const ConcertForm = (props) => {
                         <Field name="images.headliner"
                             type="text"
                             className="form-control" />
-                        <Field name="images.headliner" component={CustomInputComponent} />
+                        <Field name="images.headliner" component={PreviewImageComponent} />
                         <ErrorMessage
                             name="images.headliner"
                             className="d-block 
@@ -147,6 +137,9 @@ const ConcertForm = (props) => {
                             component="span"
                         />
                     </FormGroup>
+                    <div>
+                        &nbsp;
+                    </div>
                     <Button variant="danger" size="lg"
                         block="block" type="submit">
                         {props.children}
