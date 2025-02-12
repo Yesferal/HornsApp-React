@@ -50,7 +50,7 @@ const BandForm = (props) => {
     }) => {
         return (
             <div>
-                <img src={field.value} />
+                <img src={field.value} alt={field.name} />
             </div>
         )
     };
