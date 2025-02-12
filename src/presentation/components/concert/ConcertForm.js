@@ -9,6 +9,7 @@ import {
 import {
     FormGroup, Button, FormLabel
 } from "react-bootstrap";
+import { MultiSelectComponent } from "../common/multi.select.component";
 
 export function initConcertForm(formValues, onSubmit, title) {
     return (
@@ -33,7 +34,6 @@ const ConcertForm = (props) => {
                 headliner: Yup.string(),
                 poster: Yup.string().nullable()
             }),
-            genre: Yup.string().nullable(),
             ticketing: Yup.object().shape({
                 name: Yup.string().nullable(),
                 url: Yup.string().nullable(),
@@ -41,8 +41,16 @@ const ConcertForm = (props) => {
             trailer: Yup.object().shape({
                 image: Yup.string().nullable(),
                 url: Yup.string().nullable(),
-            })
+            }),
+            tags: Yup.array().nullable(),
         });
+
+    const options = [
+        { value: 'JAZZ', label: 'Jazz' },
+        { value: 'METAL', label: 'Metal' },
+        { value: 'POP', label: 'Pop' },
+        { value: 'ROCK', label: 'Rock' },
+    ]
 
     const CustomInputComponent = ({
         field, // { name, value, onChange, onBlur }
@@ -50,7 +58,7 @@ const ConcertForm = (props) => {
     }) => {
         return (
             <div>
-                <img src={field.value} />
+                <img src={field.value} alt={field.name} />
             </div>
         )
     };
@@ -124,6 +132,16 @@ const ConcertForm = (props) => {
                         <Field name="images.headliner" component={CustomInputComponent} />
                         <ErrorMessage
                             name="images.headliner"
+                            className="d-block 
+                                invalid-feedback"
+                            component="span"
+                        />
+                    </FormGroup>
+                    <FormGroup>
+                        <FormLabel for="tags">Tags</FormLabel>
+                        <Field name="tags" component={MultiSelectComponent} options={options} />
+                        <ErrorMessage
+                            name="tags"
                             className="d-block 
                                 invalid-feedback"
                             component="span"

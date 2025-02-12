@@ -19,7 +19,8 @@ class ConcertModel {
         trailer: {
             image: null,
             url: null
-        }
+        },
+        tags: []
     }
 }
 
