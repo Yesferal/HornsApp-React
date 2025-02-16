@@ -16,7 +16,7 @@ export function BaseEditComponent(path, emptyModel, redirect, initForm) {
         }, (error) => {
             console.log(`YESFERAL: Edit: error: ${error}`);
         });
-    });
+    }, []);
 
     const onSubmit = (myObject) => {
         axiosDataSource.makePutRequest(path, myObject, (response) => {

@@ -15,7 +15,7 @@ export function BaseListComponent(path, redirect, initTable) {
         }, (error) => {
             console.log(`YESFERAL: List: error: ${error}`);
         });
-    });
+    }, []);
 
     const DataTable = () => {
         return myObjects.map((res, i) => {
