@@ -26,8 +26,8 @@ import BandList from "./presentation/components/band/band.list.component.js";
 import CreateConcert from "./presentation/components/concert/concert.create.component.js";
 import EditConcert from "./presentation/components/concert/concert.edit.component.js";
 import ConcertList from "./presentation/components/concert/concert.list.component.js";
-//import CreateVenue from "./presentation/components/concert/venue.create.component.js";
-//import EditVenue from "./presentation/components/concert/venue.edit.component.js";
+import CreateVenue from "./presentation/components/venue/venue.create.component.js";
+import EditVenue from "./presentation/components/venue/venue.edit.component.js";
 import VenueList from "./presentation/components/venue/venue.list.component.js";
 
 // My App
@@ -90,6 +90,10 @@ const App = () => {
                     element={<EditBand />} />
                   <Route path={router.BAND_LIST}
                     element={<BandList />} />
+                  <Route path={router.VENUE_CREATE}
+                    element={<CreateVenue />} />
+                  <Route path={router.VENUE_EDIT + '/:id'}
+                    element={<EditVenue />} />
                   <Route path={router.VENUE_LIST}
                     element={<VenueList />} />
                 </Routes>
