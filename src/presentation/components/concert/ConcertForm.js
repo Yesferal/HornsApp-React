@@ -13,6 +13,7 @@ import { MultiSelectComponent } from "../common/multi.select.component";
 import { PreviewImageComponent } from "../common/preview.image.component";
 import { AxiosDataSource } from "../../../framework/axios/axios.datasource";
 import { MultiSelectObjectComponent } from "../common/multi.select.object.component";
+import { SingleSelectObjectComponent } from "../common/single.select.object.component";
 
 export function initConcertForm(formValues, onSubmit, title) {
     return (
@@ -46,7 +47,10 @@ const ConcertForm = (props) => {
                 url: Yup.string().nullable(),
             }),
             tags: Yup.array().nullable(),
-            bands: Yup.array().nullable(),
+            venue: Yup.object().shape({
+                _id: Yup.string(),
+                name: Yup.string(),
+            }),
         });
 
     const tagOptions = [
@@ -57,11 +61,22 @@ const ConcertForm = (props) => {
     ]
 
     const [bandOptions, setBandOptions] = useState([]);
+    const [venueOptions, setVenueOptions] = useState([]);
     const axiosDataSource = new AxiosDataSource()
-    const path = axiosDataSource.HTTP_BAND_REQUEST_PATH
     useEffect(() => {
-        axiosDataSource.makeGetRequest(path, (response) => {
+        axiosDataSource.makeGetRequest(axiosDataSource.HTTP_BAND_REQUEST_PATH, (response) => {
             setBandOptions(response.data.map((res, i) => {
+                const {
+                    name
+                } = res;
+                return { value: res, label: name }
+            }))
+        }, (error) => {
+            console.log(`YESFERAL: List: error: ${error}`);
+        });
+
+        axiosDataSource.makeGetRequest(axiosDataSource.HTTP_VENUE_REQUEST_PATH, (response) => {
+            setVenueOptions(response.data.map((res, i) => {
                 const {
                     name
                 } = res;
@@ -161,6 +176,17 @@ const ConcertForm = (props) => {
                         <Field name="bands" component={MultiSelectObjectComponent} options={bandOptions} />
                         <ErrorMessage
                             name="bands"
+                            className="d-block 
+                                invalid-feedback"
+                            component="span"
+                        />
+                    </FormGroup>
+
+                    <FormGroup>
+                        <FormLabel for="venue">Venue</FormLabel>
+                        <Field name="venue" component={SingleSelectObjectComponent} options={venueOptions} />
+                        <ErrorMessage
+                            name="venue"
                             className="d-block 
                                 invalid-feedback"
                             component="span"
