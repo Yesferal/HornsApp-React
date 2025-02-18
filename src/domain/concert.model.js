@@ -20,7 +20,8 @@ class ConcertModel {
             image: null,
             url: null
         },
-        tags: []
+        tags: [],
+        bands: []
     }
 }
 

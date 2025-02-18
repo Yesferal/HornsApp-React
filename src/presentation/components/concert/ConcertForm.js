@@ -1,6 +1,6 @@
 /* Copyright © 2025 Yesferal Cueva. All rights reserved. */
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import * as Yup from "yup";
 import {
     Formik, Form,
@@ -11,6 +11,8 @@ import {
 } from "react-bootstrap";
 import { MultiSelectComponent } from "../common/multi.select.component";
 import { PreviewImageComponent } from "../common/preview.image.component";
+import { AxiosDataSource } from "../../../framework/axios/axios.datasource";
+import { MultiSelectObjectComponent } from "../common/multi.select.object.component";
 
 export function initConcertForm(formValues, onSubmit, title) {
     return (
@@ -44,14 +46,31 @@ const ConcertForm = (props) => {
                 url: Yup.string().nullable(),
             }),
             tags: Yup.array().nullable(),
+            bands: Yup.array().nullable(),
         });
 
-    const options = [
+    const tagOptions = [
         { value: 'JAZZ', label: 'Jazz' },
         { value: 'METAL', label: 'Metal' },
         { value: 'POP', label: 'Pop' },
         { value: 'ROCK', label: 'Rock' },
     ]
+
+    const [bandOptions, setBandOptions] = useState([]);
+    const axiosDataSource = new AxiosDataSource()
+    const path = axiosDataSource.HTTP_BAND_REQUEST_PATH
+    useEffect(() => {
+        axiosDataSource.makeGetRequest(path, (response) => {
+            setBandOptions(response.data.map((res, i) => {
+                const {
+                    name
+                } = res;
+                return { value: res, label: name }
+            }))
+        }, (error) => {
+            console.log(`YESFERAL: List: error: ${error}`);
+        });
+    }, []);
 
     return (
         <div className="form-wrapper">
@@ -129,9 +148,19 @@ const ConcertForm = (props) => {
                     </FormGroup>
                     <FormGroup>
                         <FormLabel for="tags">Tags</FormLabel>
-                        <Field name="tags" component={MultiSelectComponent} options={options} />
+                        <Field name="tags" component={MultiSelectComponent} options={tagOptions} />
                         <ErrorMessage
                             name="tags"
+                            className="d-block 
+                                invalid-feedback"
+                            component="span"
+                        />
+                    </FormGroup>
+                    <FormGroup>
+                        <FormLabel for="bands">Bands</FormLabel>
+                        <Field name="bands" component={MultiSelectObjectComponent} options={bandOptions} />
+                        <ErrorMessage
+                            name="bands"
                             className="d-block 
                                 invalid-feedback"
                             component="span"

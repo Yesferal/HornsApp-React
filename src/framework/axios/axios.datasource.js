@@ -6,10 +6,10 @@ import { Environment } from "../env/env.datasource";
 export class AxiosDataSource {
     HTTP_BAND_REQUEST_PATH = "admin_band"
     HTTP_CONCERT_REQUEST_PATH = "admin_concert"
-   
+
     baseUrl = new Environment().BASE_URL;
     auth = new Environment().APP_AUTH;
-    
+
     config = {
         headers: {
             'Content-Type': 'application/json',
@@ -21,8 +21,9 @@ export class AxiosDataSource {
     }
 
     makeGetRequest(path, onSuccess, onError) {
+        const url = `${this.baseUrl}/${path}`
         axios
-            .get(`${this.baseUrl}/${path}`, this.config)
+            .get(url, this.config)
             .then((response) => {
                 console.log(`YESFERAL: HornsAppAxios: Get: response: ${response}`);
                 onSuccess(response);
