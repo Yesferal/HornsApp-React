@@ -14,7 +14,8 @@ const VenueTableRow =
     (props) => {
         const {
             _id,
-            name
+            name,
+            description
         } = props.obj;
         const axiosDataSource = new AxiosDataSource()
         const router = new RouterNavigatorDataSource()
@@ -35,7 +36,7 @@ const VenueTableRow =
         return (
             <tr>
                 <td>{name}</td>
-                <td>-</td>
+                <td>{description}</td>
                 <td>
                     <Link className="edit-link"
                         to={router.VENUE_EDIT + "/" + _id}>

@@ -24,7 +24,13 @@ const VenueForm = (props) => {
 
     const validationSchema =
         Yup.object().shape({
-            name: Yup.string()
+            name: Yup.string().nonNullable(),
+            shortName: Yup.object().shape({
+                en: Yup.string().nullable(),
+                es: Yup.string(),
+            }),
+            latitude: Yup.number().nonNullable(),
+            longitude: Yup.number().nonNullable()
         });
 
     return (
@@ -43,7 +49,57 @@ const VenueForm = (props) => {
                             component="span"
                         />
                     </FormGroup>
-                    
+                    <FormGroup>
+                        <FormLabel for="shortName.en">Short Name (EN)</FormLabel>
+                        <Field name="shortName.en"
+                            type="text"
+                            as="textarea"
+                            className="form-control" />
+                        <ErrorMessage
+                            name="shortName.en"
+                            className="d-block invalid-feedback"
+                            component="span"
+                        />
+                    </FormGroup>
+                    <FormGroup>
+                        <label htmlFor="shortName.es">Short Name (ES)</label>
+                        <Field name="shortName.es"
+                            type="text"
+                            as="textarea"
+                            className="form-control" />
+
+                        <ErrorMessage
+                            name="shortName.es"
+                            className="d-block 
+                                                        invalid-feedback"
+                            component="span"
+                        />
+                    </FormGroup>
+                    <FormGroup>
+                        <FormLabel for="latitude">Latitude</FormLabel>
+                        <Field name="latitude"
+                            type="number"
+                            className="form-control" />
+                        <ErrorMessage
+                            name="latitude"
+                            className="d-block 
+                                invalid-feedback"
+                            component="span"
+                        />
+                    </FormGroup>
+                    <FormGroup>
+                        <FormLabel for="longitude">Longitude</FormLabel>
+                        <Field name="longitude"
+                            type="number"
+                            className="form-control" />
+                        <ErrorMessage
+                            name="longitude"
+                            className="d-block 
+                                invalid-feedback"
+                            component="span"
+                        />
+                    </FormGroup>
+
                     <div>
                         &nbsp;
                     </div>

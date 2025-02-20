@@ -2,7 +2,13 @@
 
 class VenueModel {
     EMPTY_MODEL = {
-        name: null
+        name: null,
+        shortName: {
+            en: null,
+            es: null
+        },
+        latitude: null,
+        longitude: null
     }
 }
 
