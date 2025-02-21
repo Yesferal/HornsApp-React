@@ -26,7 +26,7 @@ const VenueForm = (props) => {
     const validationSchema =
         Yup.object().shape({
             name: Yup.string().nonNullable(),
-            shortName: Yup.object().shape({
+            displayName: Yup.object().shape({
                 en: Yup.string().nullable(),
                 es: Yup.string(),
             }),
@@ -51,26 +51,26 @@ const VenueForm = (props) => {
                         />
                     </FormGroup>
                     <FormGroup>
-                        <FormLabel for="shortName.en">Short Name (EN)</FormLabel>
-                        <Field name="shortName.en"
+                        <FormLabel for="displayName.en">Display Name (EN)</FormLabel>
+                        <Field name="displayName.en"
                             type="text"
                             as="textarea"
                             className="form-control" />
                         <ErrorMessage
-                            name="shortName.en"
+                            name="displayName.en"
                             className="d-block invalid-feedback"
                             component="span"
                         />
                     </FormGroup>
                     <FormGroup>
-                        <label htmlFor="shortName.es">Short Name (ES)</label>
-                        <Field name="shortName.es"
+                        <label htmlFor="displayName.es">Display Name (ES)</label>
+                        <Field name="displayName.es"
                             type="text"
                             as="textarea"
                             className="form-control" />
 
                         <ErrorMessage
-                            name="shortName.es"
+                            name="displayName.es"
                             className="d-block 
                                                         invalid-feedback"
                             component="span"

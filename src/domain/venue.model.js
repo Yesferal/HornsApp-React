@@ -3,7 +3,7 @@
 class VenueModel {
     EMPTY_MODEL = {
         name: null,
-        shortName: {
+        displayName: {
             en: null,
             es: null
         },
