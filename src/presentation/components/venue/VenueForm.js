@@ -9,6 +9,7 @@ import {
 import {
     FormGroup, Button, FormLabel
 } from "react-bootstrap";
+import { PreviewUrlComponent } from "../common/preview.url.component";
 
 export function initVenueForm(formValues, onSubmit, title) {
     return (
@@ -99,7 +100,10 @@ const VenueForm = (props) => {
                             component="span"
                         />
                     </FormGroup>
-
+                    <FormGroup>
+                        <FormLabel for="map">Url Preview</FormLabel>
+                        <PreviewUrlComponent name="map" />
+                    </FormGroup>
                     <div>
                         &nbsp;
                     </div>
