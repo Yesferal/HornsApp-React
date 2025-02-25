@@ -25,11 +25,11 @@ const VenueForm = (props) => {
 
     const validationSchema =
         Yup.object().shape({
-            name: Yup.string().nonNullable(),
-            displayName: Yup.object().shape({
+            name: Yup.object().shape({
                 en: Yup.string().nullable(),
                 es: Yup.string(),
             }),
+            mapSearchName: Yup.string().nonNullable(),
             latitude: Yup.number().nonNullable(),
             longitude: Yup.number().nonNullable()
         });
@@ -40,39 +40,39 @@ const VenueForm = (props) => {
                 validationSchema={validationSchema}>
                 <Form>
                     <FormGroup>
-                        <FormLabel for="name">Name</FormLabel>
-                        <Field name="name" type="text"
-                            className="form-control" />
-                        <ErrorMessage
-                            name="name"
-                            className="d-block 
-                                invalid-feedback"
-                            component="span"
-                        />
-                    </FormGroup>
-                    <FormGroup>
-                        <FormLabel for="displayName.en">Display Name (EN)</FormLabel>
-                        <Field name="displayName.en"
+                        <FormLabel for="name.en">Display Name (EN)</FormLabel>
+                        <Field name="name.en"
                             type="text"
                             as="textarea"
                             className="form-control" />
                         <ErrorMessage
-                            name="displayName.en"
+                            name="name.en"
                             className="d-block invalid-feedback"
                             component="span"
                         />
                     </FormGroup>
                     <FormGroup>
-                        <label htmlFor="displayName.es">Display Name (ES)</label>
-                        <Field name="displayName.es"
+                        <label htmlFor="name.es">Display Name (ES)</label>
+                        <Field name="name.es"
                             type="text"
                             as="textarea"
                             className="form-control" />
 
                         <ErrorMessage
-                            name="displayName.es"
+                            name="name.es"
                             className="d-block 
                                                         invalid-feedback"
+                            component="span"
+                        />
+                    </FormGroup>
+                    <FormGroup>
+                        <FormLabel for="mapSearchName">Map-Search Name</FormLabel>
+                        <Field name="mapSearchName" type="text"
+                            className="form-control" />
+                        <ErrorMessage
+                            name="mapSearchName"
+                            className="d-block 
+                                invalid-feedback"
                             component="span"
                         />
                     </FormGroup>

@@ -12,10 +12,10 @@ export function initVenueTable(res, i) {
 
 const VenueTableRow =
     (props) => {
+        console.log(`JSON.parse(: ${JSON.stringify(props.obj)}`)
         const {
             _id,
-            name,
-            description
+            name: {en, es}
         } = props.obj;
         const axiosDataSource = new AxiosDataSource()
         const router = new RouterNavigatorDataSource()
@@ -35,8 +35,8 @@ const VenueTableRow =
 
         return (
             <tr>
-                <td>{name}</td>
-                <td>{description}</td>
+                <td>{es}</td>
+                <td>{en}</td>
                 <td>
                     <Link className="edit-link"
                         to={router.VENUE_EDIT + "/" + _id}>
