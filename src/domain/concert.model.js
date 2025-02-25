@@ -2,16 +2,16 @@
 
 class ConcertModel {
     EMPTY_MODEL = {
-        name: {
-            en: null,
-            es: null
-        },
+        name: null,
         about: {
             en: null,
             es: null
         },
         dateTime: null,
-        posterImage: null,
+        headliner: {
+            name: null,
+            url: null
+        },
         ticketing: {
             name: null,
             url: null

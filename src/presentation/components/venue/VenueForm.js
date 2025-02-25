@@ -29,9 +29,9 @@ const VenueForm = (props) => {
                 en: Yup.string().nullable(),
                 es: Yup.string(),
             }),
-            mapSearchName: Yup.string().nonNullable(),
-            latitude: Yup.number().nonNullable(),
-            longitude: Yup.number().nonNullable()
+            mapSearchName: Yup.string().required("Required"),
+            latitude: Yup.number().required("Required"),
+            longitude: Yup.number().required("Required"),
         });
 
     return (
@@ -40,7 +40,7 @@ const VenueForm = (props) => {
                 validationSchema={validationSchema}>
                 <Form>
                     <FormGroup>
-                        <FormLabel for="name.en">Display Name (EN)</FormLabel>
+                        <FormLabel for="name.en">Name (EN)</FormLabel>
                         <Field name="name.en"
                             type="text"
                             as="textarea"
@@ -52,7 +52,7 @@ const VenueForm = (props) => {
                         />
                     </FormGroup>
                     <FormGroup>
-                        <label htmlFor="name.es">Display Name (ES)</label>
+                        <label htmlFor="name.es">Name (ES)</label>
                         <Field name="name.es"
                             type="text"
                             as="textarea"

@@ -34,22 +34,17 @@ const ConcertForm = (props) => {
                 es: Yup.string().nullable(),
             }),
             dateTime: Yup.date(),
-            images: Yup.object().shape({
-                headliner: Yup.string(),
-                poster: Yup.string().nullable()
+            headliner: Yup.object().shape({
+                name: Yup.string().nullable(),
+                url: Yup.string(),
             }),
             ticketing: Yup.object().shape({
                 name: Yup.string().nullable(),
                 url: Yup.string().nullable(),
             }),
-            trailer: Yup.object().shape({
-                image: Yup.string().nullable(),
-                url: Yup.string().nullable(),
-            }),
             tags: Yup.array().nullable(),
             venue: Yup.object().shape({
                 _id: Yup.string(),
-                name: Yup.string(),
             }),
         });
 
@@ -78,9 +73,9 @@ const ConcertForm = (props) => {
         axiosDataSource.makeGetRequest(axiosDataSource.HTTP_VENUE_REQUEST_PATH, (response) => {
             setVenueOptions(response.data.map((res, i) => {
                 const {
-                    name
+                    name: { es }
                 } = res;
-                return { value: res, label: name }
+                return { value: res, label: es }
             }))
         }, (error) => {
             console.log(`YESFERAL: List: error: ${error}`);
@@ -105,7 +100,6 @@ const ConcertForm = (props) => {
                     </FormGroup>
                     <FormGroup>
                         <FormLabel for="about.en">About (EN)</FormLabel>
-
                         <div className="control">
                             <Field name="about.en"
                                 type="text"
@@ -149,13 +143,49 @@ const ConcertForm = (props) => {
                         />
                     </FormGroup>
                     <FormGroup>
-                        <FormLabel for="images.headliner">Headliner Image(URL)</FormLabel>
-                        <Field name="images.headliner"
+                        <FormLabel for="headliner.name">Headliner Name</FormLabel>
+                        <Field name="headliner.name"
                             type="text"
                             className="form-control" />
-                        <Field name="images.headliner" component={PreviewImageComponent} />
                         <ErrorMessage
-                            name="images.headliner"
+                            name="headliner.name"
+                            className="d-block 
+                                invalid-feedback"
+                            component="span"
+                        />
+                    </FormGroup>
+                    <FormGroup>
+                        <FormLabel for="headliner.url">Headliner Image(URL)</FormLabel>
+                        <Field name="headliner.url"
+                            type="text"
+                            className="form-control" />
+                        <Field name="headliner.url" component={PreviewImageComponent} />
+                        <ErrorMessage
+                            name="headliner.url"
+                            className="d-block 
+                                invalid-feedback"
+                            component="span"
+                        />
+                    </FormGroup>
+                    <FormGroup>
+                        <FormLabel for="ticketing.name">Ticketing Name</FormLabel>
+                        <Field name="ticketing.name"
+                            type="text"
+                            className="form-control" />
+                        <ErrorMessage
+                            name="ticketing.name"
+                            className="d-block 
+                                invalid-feedback"
+                            component="span"
+                        />
+                    </FormGroup>
+                    <FormGroup>
+                        <FormLabel for="ticketing.url">Ticketing Url</FormLabel>
+                        <Field name="ticketing.url"
+                            type="text"
+                            className="form-control" />
+                        <ErrorMessage
+                            name="ticketing.url"
                             className="d-block 
                                 invalid-feedback"
                             component="span"
@@ -181,7 +211,6 @@ const ConcertForm = (props) => {
                             component="span"
                         />
                     </FormGroup>
-
                     <FormGroup>
                         <FormLabel for="venue">Venue</FormLabel>
                         <Field name="venue" component={SingleSelectObjectComponent} options={venueOptions} />
