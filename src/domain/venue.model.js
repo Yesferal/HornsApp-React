@@ -2,11 +2,11 @@
 
 class VenueModel {
     EMPTY_MODEL = {
-        name: null,
-        displayName: {
+        name: {
             en: null,
             es: null
         },
+        mapSearchName: null,
         latitude: null,
         longitude: null
     }

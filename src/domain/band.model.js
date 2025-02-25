@@ -3,8 +3,10 @@
 class BandModel {
     EMPTY_MODEL = {
         name: null,
-        genre: null,
-        formerIn: null,
+        images: {
+            logo: null,
+            members: null
+        },
         about: {
             en: null,
             es: null
@@ -13,10 +15,8 @@ class BandModel {
             en: null,
             es: null
         },
-        images: {
-            logo: null,
-            members: null
-        }
+        formerIn: null,
+        genres: [],
     }
 }
 

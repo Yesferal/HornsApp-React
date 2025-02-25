@@ -2,27 +2,25 @@
 
 class ConcertModel {
     EMPTY_MODEL = {
-        name: null,
+        name: {
+            en: null,
+            es: null
+        },
         about: {
             en: null,
             es: null
         },
         dateTime: null,
-        images: {
-            headliner: null,
-            poster: null,
-        },
+        posterImage: null,
         ticketing: {
             name: null,
             url: null
         },
-        trailer: {
-            image: null,
-            url: null
-        },
+        links: [],
         tags: [],
+        venue: null,
+        state: null,
         bands: [],
-        venue: null
     }
 }
 
