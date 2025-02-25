@@ -15,7 +15,7 @@ const VenueTableRow =
         console.log(`JSON.parse(: ${JSON.stringify(props.obj)}`)
         const {
             _id,
-            name: {en, es}
+            name: { en, es }
         } = props.obj;
         const axiosDataSource = new AxiosDataSource()
         const router = new RouterNavigatorDataSource()

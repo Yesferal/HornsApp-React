@@ -15,7 +15,7 @@ const BandTableRow =
         const {
             _id,
             name,
-            genre
+            country: { en }
         } = props.obj;
         const axiosDataSource = new AxiosDataSource()
         const router = new RouterNavigatorDataSource()
@@ -36,7 +36,7 @@ const BandTableRow =
         return (
             <tr>
                 <td>{name}</td>
-                <td>{genre}</td>
+                <td>{en}</td>
                 <td>
                     <Link className="edit-link"
                         to={router.BAND_EDIT + "/" + _id}>

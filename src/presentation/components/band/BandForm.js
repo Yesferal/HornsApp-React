@@ -26,11 +26,10 @@ const BandForm = (props) => {
     const validationSchema =
         Yup.object().shape({
             name: Yup.string().required("Required"),
-            genre: Yup.string().required("Required"),
-            formerIn: Yup.number()
-                .positive("Invalid roll number")
-                .integer("Invalid roll number")
-                .nullable(),
+            images: Yup.object().shape({
+                logo: Yup.string().required("Required"),
+                members: Yup.string().required("Required"),
+            }),
             about: Yup.object().shape({
                 en: Yup.string().nullable(),
                 es: Yup.string().nullable(),
@@ -39,10 +38,10 @@ const BandForm = (props) => {
                 en: Yup.string().nullable(),
                 es: Yup.string().nullable(),
             }),
-            images: Yup.object().shape({
-                logo: Yup.string(),
-                members: Yup.string(),
-            })
+            formerIn: Yup.number()
+                .positive("Invalid roll number")
+                .integer("Invalid roll number")
+                .nullable(),
         });
 
     return (
@@ -62,24 +61,26 @@ const BandForm = (props) => {
                         />
                     </FormGroup>
                     <FormGroup>
-                        <FormLabel for="genre">Genre</FormLabel>
-                        <Field name="genre"
+                        <FormLabel for="images.logo">Logo Image(URL)</FormLabel>
+                        <Field name="images.logo"
                             type="text"
                             className="form-control" />
+                        <Field name="images.logo" component={PreviewImageComponent} />
                         <ErrorMessage
-                            name="genre"
+                            name="images.logo"
                             className="d-block 
                                 invalid-feedback"
                             component="span"
                         />
                     </FormGroup>
                     <FormGroup>
-                        <FormLabel for="formerIn">Former In</FormLabel>
-                        <Field name="formerIn"
-                            type="number"
+                        <FormLabel for="images.members">Member Image(URL)</FormLabel>
+                        <Field name="images.members"
+                            type="text"
                             className="form-control" />
+                        <Field name="images.members" component={PreviewImageComponent} />
                         <ErrorMessage
-                            name="formerIn"
+                            name="images.members"
                             className="d-block 
                                 invalid-feedback"
                             component="span"
@@ -87,7 +88,6 @@ const BandForm = (props) => {
                     </FormGroup>
                     <FormGroup>
                         <FormLabel for="about.en">About (EN)</FormLabel>
-
                         <div className="control">
                             <Field name="about.en"
                                 type="text"
@@ -144,26 +144,12 @@ const BandForm = (props) => {
                         />
                     </FormGroup>
                     <FormGroup>
-                        <FormLabel for="images.logo">Logo Image(URL)</FormLabel>
-                        <Field name="images.logo"
-                            type="text"
+                        <FormLabel for="formerIn">Former In</FormLabel>
+                        <Field name="formerIn"
+                            type="number"
                             className="form-control" />
-                        <Field name="images.logo" component={PreviewImageComponent} />
                         <ErrorMessage
-                            name="images.logo"
-                            className="d-block 
-                                invalid-feedback"
-                            component="span"
-                        />
-                    </FormGroup>
-                    <FormGroup>
-                        <FormLabel for="images.members">Member Image(URL)</FormLabel>
-                        <Field name="images.members"
-                            type="text"
-                            className="form-control" />
-                        <Field name="images.members" component={PreviewImageComponent} />
-                        <ErrorMessage
-                            name="images.members"
+                            name="formerIn"
                             className="d-block 
                                 invalid-feedback"
                             component="span"
