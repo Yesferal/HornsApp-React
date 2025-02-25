@@ -12,7 +12,6 @@ export function initVenueTable(res, i) {
 
 const VenueTableRow =
     (props) => {
-        console.log(`JSON.parse(: ${JSON.stringify(props.obj)}`)
         const {
             _id,
             name: { en, es }
