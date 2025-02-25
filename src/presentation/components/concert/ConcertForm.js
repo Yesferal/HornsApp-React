@@ -14,6 +14,7 @@ import { PreviewImageComponent } from "../common/preview.image.component";
 import { AxiosDataSource } from "../../../framework/axios/axios.datasource";
 import { MultiSelectObjectComponent } from "../common/multi.select.object.component";
 import { SingleSelectObjectComponent } from "../common/single.select.object.component";
+import { DatePickerComponent } from "../common/date.picker.component";
 
 export function initConcertForm(formValues, onSubmit, title) {
     return (
@@ -61,8 +62,9 @@ const ConcertForm = (props) => {
     const [bandOptions, setBandOptions] = useState([]);
     const [venueOptions, setVenueOptions] = useState([]);
     const [statusOptions, setStatusOptions] = useState([]);
-    const axiosDataSource = new AxiosDataSource()
     useEffect(() => {
+        const axiosDataSource = new AxiosDataSource()
+        
         axiosDataSource.makeGetRequest(axiosDataSource.HTTP_BAND_REQUEST_PATH, (response) => {
             setBandOptions(response.data.map((res, i) => {
                 const {
@@ -147,9 +149,7 @@ const ConcertForm = (props) => {
                     </FormGroup>
                     <FormGroup>
                         <FormLabel for="dateTime">DateTime</FormLabel>
-                        <Field name="dateTime"
-                            type="text"
-                            className="form-control" />
+                        <Field name="dateTime" component={DatePickerComponent} />
                         <ErrorMessage
                             name="dateTime"
                             className="d-block 
