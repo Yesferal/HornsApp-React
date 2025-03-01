@@ -43,7 +43,6 @@ const VenueForm = (props) => {
                         <FormLabel for="name.en">Name (EN)</FormLabel>
                         <Field name="name.en"
                             type="text"
-                            as="textarea"
                             className="form-control" />
                         <ErrorMessage
                             name="name.en"
@@ -55,7 +54,6 @@ const VenueForm = (props) => {
                         <label htmlFor="name.es">Name (ES)</label>
                         <Field name="name.es"
                             type="text"
-                            as="textarea"
                             className="form-control" />
 
                         <ErrorMessage
