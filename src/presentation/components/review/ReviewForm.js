@@ -25,7 +25,7 @@ const ReviewForm = (props) => {
 
     const validationSchema =
         Yup.object().shape({
-            type: Yup.string().required("Required"),
+            key: Yup.string().required("Required"),
             title: Yup.object().shape({
                 en: Yup.string().nullable(),
                 es: Yup.string()
@@ -40,11 +40,11 @@ const ReviewForm = (props) => {
                 {({ values }) => (
                     <Form>
                         <FormGroup>
-                            <FormLabel for="type">Type</FormLabel>
-                            <Field name="type" type="text"
+                            <FormLabel for="key">Key</FormLabel>
+                            <Field name="key" type="text"
                                 className="form-control" />
                             <ErrorMessage
-                                name="type"
+                                name="key"
                                 className="d-block 
                                                     invalid-feedback"
                                 component="span"

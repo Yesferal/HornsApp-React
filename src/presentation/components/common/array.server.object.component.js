@@ -32,13 +32,13 @@ export const FieldArrayServerObjectComponent = ({
                             </div>
                             <div className="col">
                                 <Field
-                                    name={`${field.name}.${index}.icon`}
+                                    name={`${field.name}.${index}.data.icon`}
                                     placeholder="Icon"
                                     className="form-control"
                                     type="text"
                                 />
                                 <ErrorMessage
-                                    name={`${field.name}.${index}.icon`}
+                                    name={`${field.name}.${index}.data.icon`}
                                     className="d-block 
                                 invalid-feedback"
                                     component="span"
@@ -49,13 +49,13 @@ export const FieldArrayServerObjectComponent = ({
                             </div>
                             <div className="col">
                                 <Field
-                                    name={`${field.name}.${index}.title.es`}
+                                    name={`${field.name}.${index}.data.title.es`}
                                     placeholder="Title ES"
                                     className="form-control"
                                     type="text"
                                 />
                                 <ErrorMessage
-                                    name={`${field.name}.${index}.title.es`}
+                                    name={`${field.name}.${index}.data.title.es`}
                                     className="d-block 
                                 invalid-feedback"
                                     component="span"
@@ -63,13 +63,13 @@ export const FieldArrayServerObjectComponent = ({
                             </div>
                             <div className="col">
                                 <Field
-                                    name={`${field.name}.${index}.title.en`}
+                                    name={`${field.name}.${index}.data.title.en`}
                                     placeholder="Title EN"
                                     className="form-control"
                                     type="text"
                                 />
                                 <ErrorMessage
-                                    name={`${field.name}.${index}.title.en`}
+                                    name={`${field.name}.${index}.data.title.en`}
                                     className="d-block 
                                 invalid-feedback"
                                     component="span"
@@ -80,13 +80,13 @@ export const FieldArrayServerObjectComponent = ({
                             </div>
                             <div className="col">
                                 <Field
-                                    name={`${field.name}.${index}.subtitle.es`}
+                                    name={`${field.name}.${index}.data.subtitle.es`}
                                     placeholder="Sub ES"
                                     className="form-control"
                                     type="text"
                                 />
                                 <ErrorMessage
-                                    name={`${field.name}.${index}.subtitle.es`}
+                                    name={`${field.name}.${index}.data.subtitle.es`}
                                     className="d-block 
                                 invalid-feedback"
                                     component="span"
@@ -94,13 +94,13 @@ export const FieldArrayServerObjectComponent = ({
                             </div>
                             <div className="col">
                                 <Field
-                                    name={`${field.name}.${index}.subtitle.en`}
+                                    name={`${field.name}.${index}.data.subtitle.en`}
                                     placeholder="Sub EN"
                                     className="form-control"
                                     type="text"
                                 />
                                 <ErrorMessage
-                                    name={`${field.name}.${index}.subtitle.en`}
+                                    name={`${field.name}.${index}.data.subtitle.en`}
                                     className="d-block 
                                 invalid-feedback"
                                     component="span"
@@ -111,14 +111,14 @@ export const FieldArrayServerObjectComponent = ({
                             </div>
                             <div className="col">
                                 <Field
-                                    name={`${field.name}.${index}.description.es`}
+                                    name={`${field.name}.${index}.data.description.es`}
                                     placeholder="Description ES"
                                     className="form-control"
                                     type="text"
                                     as="textarea"
                                 />
                                 <ErrorMessage
-                                    name={`${field.name}.${index}.description.es`}
+                                    name={`${field.name}.${index}.data.description.es`}
                                     className="d-block 
                                 invalid-feedback"
                                     component="span"
@@ -129,14 +129,14 @@ export const FieldArrayServerObjectComponent = ({
                             </div>
                             <div className="col">
                                 <Field
-                                    name={`${field.name}.${index}.description.en`}
+                                    name={`${field.name}.${index}.data.description.en`}
                                     placeholder="Description EN"
                                     className="form-control"
                                     type="text"
                                     as="textarea"
                                 />
                                 <ErrorMessage
-                                    name={`${field.name}.${index}.description.en`}
+                                    name={`${field.name}.${index}.data.description.en`}
                                     className="d-block 
                                 invalid-feedback"
                                     component="span"
@@ -147,13 +147,13 @@ export const FieldArrayServerObjectComponent = ({
                             </div>
                             <div className="col">
                                 <Field
-                                    name={`${field.name}.${index}.imageUrl`}
+                                    name={`${field.name}.${index}.data.imageUrl`}
                                     placeholder="Image Url"
                                     className="form-control"
                                     type="text"
                                 />
                                 <ErrorMessage
-                                    name={`${field.name}.${index}.imageUrl`}
+                                    name={`${field.name}.${index}.data.imageUrl`}
                                     className="d-block 
                                 invalid-feedback"
                                     component="span"
@@ -161,13 +161,13 @@ export const FieldArrayServerObjectComponent = ({
                             </div>
                             <div className="col">
                                 <Field
-                                    name={`${field.name}.${index}.height`}
+                                    name={`${field.name}.${index}.data.height`}
                                     placeholder="Height"
                                     className="form-control"
                                     type="text"
                                 />
                                 <ErrorMessage
-                                    name={`${field.name}.${index}.height`}
+                                    name={`${field.name}.${index}.data.height`}
                                     className="d-block 
                                 invalid-feedback"
                                     component="span"
@@ -178,13 +178,13 @@ export const FieldArrayServerObjectComponent = ({
                             </div>
                             <div className="col">
                                 <Field
-                                    name={`${field.name}.${index}.textColor`}
+                                    name={`${field.name}.${index}.data.textColor`}
                                     placeholder="Text Color"
                                     className="form-control"
                                     type="text"
                                 />
                                 <ErrorMessage
-                                    name={`${field.name}.${index}.textColor`}
+                                    name={`${field.name}.${index}.data.textColor`}
                                     className="d-block 
                                 invalid-feedback"
                                     component="span"
@@ -192,13 +192,13 @@ export const FieldArrayServerObjectComponent = ({
                             </div>
                             <div className="col">
                                 <Field
-                                    name={`${field.name}.${index}.backgroundColor`}
+                                    name={`${field.name}.${index}.data.backgroundColor`}
                                     placeholder="Background Color"
                                     className="form-control"
                                     type="text"
                                 />
                                 <ErrorMessage
-                                    name={`${field.name}.${index}.backgroundColor`}
+                                    name={`${field.name}.${index}.data.backgroundColor`}
                                     className="d-block 
                                 invalid-feedback"
                                     component="span"

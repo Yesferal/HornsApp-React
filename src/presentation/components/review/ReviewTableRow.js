@@ -14,7 +14,7 @@ const ReviewTableRow =
     (props) => {
         const {
             _id,
-            type,
+            key,
             title: {es},
             views,
         } = props.obj;
@@ -36,7 +36,7 @@ const ReviewTableRow =
 
         return (
             <tr>
-                <td>{type} ({views?.length ?? 0})</td>
+                <td>{key} ({views?.length ?? 0})</td>
                 <td>{es}</td>
                 <td>
                     <Link className="edit-link"

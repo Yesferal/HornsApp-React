@@ -2,7 +2,7 @@
 
 export class ReviewModel {
     EMPTY_MODEL = {
-        type: null,
+        key: null,
         title: {
             en: null,
             es: null
