@@ -29,6 +29,9 @@ import ConcertList from "./presentation/components/concert/concert.list.componen
 import CreateVenue from "./presentation/components/venue/venue.create.component.js";
 import EditVenue from "./presentation/components/venue/venue.edit.component.js";
 import VenueList from "./presentation/components/venue/venue.list.component.js";
+import ReviewList from "./presentation/components/review/review.list.component.js";
+import CreateReview from "./presentation/components/review/review.create.component.js";
+import EditReview from "./presentation/components/review/review.edit.component.js";
 
 // My App
 const App = () => {
@@ -66,6 +69,12 @@ const App = () => {
                     Venues
                   </Link>
                 </Nav>
+                <Nav>
+                  <Link to={router.REVIEW_LIST}
+                    className="nav-link">
+                    Review
+                  </Link>
+                </Nav>
               </Nav>
             </Container>
           </Navbar>
@@ -96,6 +105,12 @@ const App = () => {
                     element={<EditVenue />} />
                   <Route path={router.VENUE_LIST}
                     element={<VenueList />} />
+                  <Route path={router.REVIEW_CREATE}
+                    element={<CreateReview />} />
+                  <Route path={router.REVIEW_EDIT + '/:id'}
+                    element={<EditReview />} />
+                  <Route path={router.REVIEW_LIST}
+                    element={<ReviewList />} />
                 </Routes>
               </div>
             </Col>

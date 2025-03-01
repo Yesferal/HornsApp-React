@@ -18,9 +18,16 @@ export class RouterNavigatorDataSource {
     CONCERT_EDIT = '/edit-concert'
 
     /**
-     * CONCERT SECTION
+     * VENUE SECTION
      */
     VENUE_LIST = '/venue-list'
     VENUE_CREATE = '/create-venue'
     VENUE_EDIT = '/edit-venue'
+
+    /**
+     * REVIEW SECTION
+     */
+    REVIEW_LIST = '/review-list'
+    REVIEW_CREATE = '/create-review'
+    REVIEW_EDIT = '/edit-review'
 }

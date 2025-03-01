@@ -8,6 +8,7 @@ export class AxiosDataSource {
     HTTP_CONCERT_REQUEST_PATH = "admin_concert"
     HTTP_VENUE_REQUEST_PATH = "admin_venue"
     HTTP_STATE_REQUEST_PATH = "admin_state"
+    HTTP_REVIEW_REQUEST_PATH = "admin_review"
 
     baseUrl = new Environment().BASE_URL;
     auth = new Environment().APP_AUTH;
