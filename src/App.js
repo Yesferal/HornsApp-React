@@ -29,9 +29,12 @@ import ConcertList from "./presentation/components/concert/concert.list.componen
 import CreateVenue from "./presentation/components/venue/venue.create.component.js";
 import EditVenue from "./presentation/components/venue/venue.edit.component.js";
 import VenueList from "./presentation/components/venue/venue.list.component.js";
-import ReviewList from "./presentation/components/review/review.list.component.js";
 import CreateReview from "./presentation/components/review/review.create.component.js";
 import EditReview from "./presentation/components/review/review.edit.component.js";
+import ReviewList from "./presentation/components/review/review.list.component.js";
+import CreateDrawer from "./presentation/components/drawer/drawer.create.component.js";
+import EditDrawer from "./presentation/components/drawer/drawer.edit.component.js";
+import DrawerList from "./presentation/components/drawer/drawer.list.component.js";
 
 // My App
 const App = () => {
@@ -75,6 +78,12 @@ const App = () => {
                     Review
                   </Link>
                 </Nav>
+                <Nav>
+                  <Link to={router.DRAWER_LIST}
+                    className="nav-link">
+                    Drawer
+                  </Link>
+                </Nav>
               </Nav>
             </Container>
           </Navbar>
@@ -111,6 +120,12 @@ const App = () => {
                     element={<EditReview />} />
                   <Route path={router.REVIEW_LIST}
                     element={<ReviewList />} />
+                  <Route path={router.DRAWER_CREATE}
+                    element={<CreateDrawer />} />
+                  <Route path={router.DRAWER_EDIT + '/:id'}
+                    element={<EditDrawer />} />
+                  <Route path={router.DRAWER_LIST}
+                    element={<DrawerList />} />
                 </Routes>
               </div>
             </Col>

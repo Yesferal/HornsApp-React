@@ -30,4 +30,11 @@ export class RouterNavigatorDataSource {
     REVIEW_LIST = '/review-list'
     REVIEW_CREATE = '/create-review'
     REVIEW_EDIT = '/edit-review'
+
+    /**
+     * DRAWER SECTION
+     */
+    DRAWER_LIST = '/drawer-list'
+    DRAWER_CREATE = '/create-drawer'
+    DRAWER_EDIT = '/edit-drawer'
 }
