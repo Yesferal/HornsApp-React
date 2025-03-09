@@ -26,7 +26,8 @@ const DrawerForm = (props) => {
 
     const validationSchema =
         Yup.object().shape({
-            versionCode: Yup.number().required("Required"),
+            appVersion: Yup.number().required("Required"),
+            docVersion: Yup.number().required("Required"),
             platform: Yup.string().required("Required"),
             screens: Yup.array(),
             newest: Yup.array(),
@@ -40,11 +41,22 @@ const DrawerForm = (props) => {
                 {({ values }) => (
                     <Form>
                         <FormGroup>
-                            <FormLabel for="versionCode">Version Code</FormLabel>
-                            <Field name="versionCode" type="number"
+                            <FormLabel for="docVersion">Doc Version Code</FormLabel>
+                            <Field name="docVersion" type="number"
                                 className="form-control" />
                             <ErrorMessage
-                                name="versionCode"
+                                name="docVersion"
+                                className="d-block 
+                                                    invalid-feedback"
+                                component="span"
+                            />
+                        </FormGroup>
+                        <FormGroup>
+                            <FormLabel for="appVersion">App Version Code</FormLabel>
+                            <Field name="appVersion" type="number"
+                                className="form-control" />
+                            <ErrorMessage
+                                name="appVersion"
                                 className="d-block 
                                                     invalid-feedback"
                                 component="span"
