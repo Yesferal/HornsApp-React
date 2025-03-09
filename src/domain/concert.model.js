@@ -8,6 +8,7 @@ class ConcertModel {
             es: null
         },
         dateTime: null,
+        totalDays: null,
         headliner: {
             name: null,
             url: null

@@ -2,10 +2,10 @@
 
 export class DrawerModel {
     EMPTY_MODEL = {
-        versionCode: null,
         platform: null,
-        screens: [],
-        newest: [],
+        docVersion: null,
+        appVersion: null,
+        views: [],
         categories: [],
     }
 }
