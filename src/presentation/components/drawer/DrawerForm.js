@@ -75,13 +75,8 @@ const DrawerForm = (props) => {
                         </FormGroup>
                         <FormGroup>
                             <hr />
-                            <FormLabel for="screens">Screens</FormLabel>
-                            <Field name="screens" component={FieldArrayScreenObjectComponent} elements={values.screens} />
-                        </FormGroup>
-                        <FormGroup>
-                            <hr />
-                            <FormLabel for="newest">Newest</FormLabel>
-                            <Field name="newest" component={FieldArrayServerObjectComponent} elements={values.newest} />
+                            <FormLabel for="views">Views</FormLabel>
+                            <Field name="views" component={FieldArrayServerObjectComponent} elements={values.views} />
                         </FormGroup>
                         <FormGroup>
                             <hr />
