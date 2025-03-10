@@ -15,7 +15,8 @@ const DrawerTableRow =
         const {
             _id,
             docVersion,
-            appVersion
+            appVersion,
+            platform,
         } = props.obj;
         const axiosDataSource = new AxiosDataSource()
         const router = new RouterNavigatorDataSource()
@@ -35,8 +36,8 @@ const DrawerTableRow =
 
         return (
             <tr>
-                <td>Version: {docVersion}</td>
-                <td>App Version Target: {appVersion}</td>
+                <td>Version #{docVersion}</td>
+                <td>{platform} (Build #{appVersion})</td>
                 <td>
                     <Link className="edit-link"
                         to={router.DRAWER_EDIT + "/" + _id}>

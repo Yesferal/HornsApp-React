@@ -75,13 +75,13 @@ const App = () => {
                 <Nav>
                   <Link to={router.REVIEW_LIST}
                     className="nav-link">
-                    Review
+                    ScreenRender
                   </Link>
                 </Nav>
                 <Nav>
                   <Link to={router.DRAWER_LIST}
                     className="nav-link">
-                    Drawer
+                    AppRender
                   </Link>
                 </Nav>
               </Nav>
