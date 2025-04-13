@@ -6,7 +6,7 @@ export const PreviewImageComponent = ({
 }) => {
     return (
         <div>
-            <img src={field.value} alt={field.name} width="500" />
+            <img src={field.value} alt={field.name} width="100%" />
         </div>
     )
 };
