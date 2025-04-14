@@ -27,10 +27,13 @@ const ReviewForm = (props) => {
     const validationSchema =
         Yup.object().shape({
             key: Yup.string().required("Required"),
-            title: Yup.object().shape({
-                en: Yup.string().nullable(),
-                es: Yup.string()
+            data: Yup.object().shape({
+                title: Yup.object().shape({
+                    en: Yup.string().nullable(),
+                    es: Yup.string()
+                })
             }),
+            id: Yup.string().nullable(),
             views: Yup.array()
         });
 
@@ -51,11 +54,22 @@ const ReviewForm = (props) => {
                                 component="span"
                             />
                         </FormGroup>
-                        <Field name="title" component={LocalizedStringComponent} />
+                        <Field name="data.title" component={LocalizedStringComponent} />
+                        <FormGroup>
+                            <FormLabel for="id">Id</FormLabel>
+                            <Field name="id" type="text"
+                                className="form-control" />
+                            <ErrorMessage
+                                name="id"
+                                className="d-block 
+                                                    invalid-feedback"
+                                component="span"
+                            />
+                        </FormGroup>
                         <FormGroup>
                             <hr />
                             <FormLabel for="views">Views</FormLabel>
-                            <Field name="views" component={FieldArrayServerObjectComponent} elements={values.views} />
+                            <Field name="views" component={FieldArrayServerObjectComponent} elements={values.views} editDetails={true} />
                         </FormGroup>
                         <div>
                             &nbsp;
