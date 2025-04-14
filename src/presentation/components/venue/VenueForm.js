@@ -10,6 +10,7 @@ import {
     FormGroup, Button, FormLabel
 } from "react-bootstrap";
 import { PreviewUrlComponent } from "../common/preview.url.component";
+import { LocalizedStringComponent } from "../common/localized.string.component";
 
 export function initVenueForm(formValues, onSubmit, title) {
     return (
@@ -29,6 +30,10 @@ const VenueForm = (props) => {
                 en: Yup.string().nullable(),
                 es: Yup.string(),
             }),
+            description: Yup.object().shape({
+                en: Yup.string().nullable(),
+                es: Yup.string(),
+            }),
             mapSearchName: Yup.string().required("Required"),
             latitude: Yup.number().required("Required"),
             longitude: Yup.number().required("Required"),
@@ -39,30 +44,8 @@ const VenueForm = (props) => {
             <Formik {...props}
                 validationSchema={validationSchema}>
                 <Form>
-                    <FormGroup>
-                        <FormLabel for="name.en">Name (EN)</FormLabel>
-                        <Field name="name.en"
-                            type="text"
-                            className="form-control" />
-                        <ErrorMessage
-                            name="name.en"
-                            className="d-block invalid-feedback"
-                            component="span"
-                        />
-                    </FormGroup>
-                    <FormGroup>
-                        <label htmlFor="name.es">Name (ES)</label>
-                        <Field name="name.es"
-                            type="text"
-                            className="form-control" />
-
-                        <ErrorMessage
-                            name="name.es"
-                            className="d-block 
-                                                        invalid-feedback"
-                            component="span"
-                        />
-                    </FormGroup>
+                    <Field name="name" component={LocalizedStringComponent} />
+                    <Field name="description" component={LocalizedStringComponent} />
                     <FormGroup>
                         <FormLabel for="mapSearchName">Map-Search Name</FormLabel>
                         <Field name="mapSearchName" type="text"
