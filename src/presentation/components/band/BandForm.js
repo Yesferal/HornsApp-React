@@ -10,6 +10,7 @@ import {
     FormGroup, Button, FormLabel
 } from "react-bootstrap";
 import { PreviewImageComponent } from "../common/preview.image.component";
+import { LocalizedStringComponent } from "../common/localized.string.component";
 
 export function initBandForm(formValues, onSubmit, title) {
     return (
@@ -60,6 +61,7 @@ const BandForm = (props) => {
                             component="span"
                         />
                     </FormGroup>
+                    <Field name="about" component={LocalizedStringComponent} />
                     <FormGroup>
                         <FormLabel for="images.logo">Logo Image(URL)</FormLabel>
                         <Field name="images.logo"
@@ -86,63 +88,7 @@ const BandForm = (props) => {
                             component="span"
                         />
                     </FormGroup>
-                    <FormGroup>
-                        <FormLabel for="about.en">About (EN)</FormLabel>
-                        <div className="control">
-                            <Field name="about.en"
-                                type="text"
-                                as="textarea"
-                                className="form-control"
-                                placeholder="About (EN)" />
-                            <ErrorMessage
-                                name="about.en"
-                                className="d-block 
-                                    invalid-feedback"
-                                component="span"
-                            />
-                        </div>
-                    </FormGroup>
-                    <FormGroup>
-                        <label htmlFor="about.es">About (ES)</label>
-                        <div className="control">
-                            <Field name="about.es"
-                                type="text"
-                                as="textarea"
-                                className="form-control"
-                                placeholder="About (ES)" />
-
-                            <ErrorMessage
-                                name="about.es"
-                                className="d-block 
-                                        invalid-feedback"
-                                component="span"
-                            />
-                        </div>
-                    </FormGroup>
-                    <FormGroup>
-                        <FormLabel for="country.en">Country (EN)</FormLabel>
-                        <Field name="country.en"
-                            type="text"
-                            className="form-control" />
-                        <ErrorMessage
-                            name="country.en"
-                            className="d-block 
-                                invalid-feedback"
-                            component="span"
-                        />
-                    </FormGroup>
-                    <FormGroup>
-                        <FormLabel for="country.es">Country (ES)</FormLabel>
-                        <Field name="country.es"
-                            type="text"
-                            className="form-control" />
-                        <ErrorMessage
-                            name="country.es"
-                            className="d-block 
-                                invalid-feedback"
-                            component="span"
-                        />
-                    </FormGroup>
+                    <Field name="country" component={LocalizedStringComponent} />
                     <FormGroup>
                         <FormLabel for="formerIn">Former In</FormLabel>
                         <Field name="formerIn"
