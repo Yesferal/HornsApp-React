@@ -10,6 +10,7 @@ import {
     FormGroup, Button, FormLabel
 } from "react-bootstrap";
 import { FieldArrayServerObjectComponent } from "../common/array.server.object.component";
+import { LocalizedStringComponent } from "../common/localized.string.component";
 
 export function initReviewForm(formValues, onSubmit, title) {
     return (
@@ -50,31 +51,7 @@ const ReviewForm = (props) => {
                                 component="span"
                             />
                         </FormGroup>
-                        <FormGroup>
-                            <FormLabel for="title.en">Title (EN)</FormLabel>
-                            <Field name="title.en"
-                                type="text"
-                                className="form-control" />
-                            <ErrorMessage
-                                name="title.en"
-                                className="d-block 
-                                invalid-feedback"
-                                component="span"
-                            />
-                        </FormGroup>
-                        <FormGroup>
-                            <label htmlFor="title.es">Title (ES)</label>
-                            <Field name="title.es"
-                                type="text"
-                                className="form-control" />
-
-                            <ErrorMessage
-                                name="title.es"
-                                className="d-block 
-                                invalid-feedback"
-                                component="span"
-                            />
-                        </FormGroup>
+                        <Field name="title" component={LocalizedStringComponent} />
                         <FormGroup>
                             <hr />
                             <FormLabel for="views">Views</FormLabel>
