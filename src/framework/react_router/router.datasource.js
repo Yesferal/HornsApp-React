@@ -25,6 +25,13 @@ export class RouterNavigatorDataSource {
     VENUE_EDIT = '/edit-venue'
 
     /**
+     * CATEGORY SECTION
+     */
+    CATEGORY_LIST = '/category-list'
+    CATEGORY_CREATE = '/create-category'
+    CATEGORY_EDIT = '/edit-category'
+
+    /**
      * REVIEW SECTION
      */
     REVIEW_LIST = '/review-list'

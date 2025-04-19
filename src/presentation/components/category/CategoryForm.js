@@ -1,0 +1,56 @@
+/* Copyright © 2025 Yesferal Cueva. All rights reserved. */
+
+import React from "react";
+import * as Yup from "yup";
+import {
+    Formik, Form,
+    Field,
+} from "formik";
+import {
+    Button
+} from "react-bootstrap";
+import { LocalizedStringComponent } from "../common/localized.string.component";
+import { FieldWithErrorMessageComponent } from "../common/field.with.error.message.component";
+
+export function initCategoryForm(formValues, onSubmit, title) {
+    return (
+        <CategoryForm initialValues={formValues}
+            onSubmit={onSubmit}
+            enableReinitialize>
+            {title}
+        </CategoryForm>
+    )
+}
+
+const CategoryForm = (props) => {
+
+    const validationSchema =
+        Yup.object().shape({
+            key: Yup.string().required("Required"),
+            name: Yup.object().shape({
+                en: Yup.string().required("Required"),
+                es: Yup.string().required("Required"),
+            }),
+        });
+
+    return (
+        <div className="form-wrapper">
+            <Formik {...props}
+                validationSchema={validationSchema}>
+                <Form>
+                    <Field name="key" component={FieldWithErrorMessageComponent} />
+                    <Field name="name" component={LocalizedStringComponent} />
+                    <div>
+                        &nbsp;
+                    </div>
+                    <Button variant="danger" size="lg"
+                        block="block" type="submit">
+                        {props.children}
+                    </Button>
+                </Form>
+            </Formik>
+        </div>
+    );
+};
+
+export default CategoryForm;

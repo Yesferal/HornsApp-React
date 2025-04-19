@@ -35,6 +35,9 @@ import ReviewList from "./presentation/components/review/review.list.component.j
 import CreateDrawer from "./presentation/components/drawer/drawer.create.component.js";
 import EditDrawer from "./presentation/components/drawer/drawer.edit.component.js";
 import DrawerList from "./presentation/components/drawer/drawer.list.component.js";
+import CreateCategory from "./presentation/components/category/category.create.component.js";
+import EditCategory from "./presentation/components/category/category.edit.component.js";
+import CategoryList from "./presentation/components/category/category.list.component.js";
 
 // My App
 const App = () => {
@@ -70,6 +73,12 @@ const App = () => {
                   <Link to={router.VENUE_LIST}
                     className="nav-link">
                     Venues
+                  </Link>
+                </Nav>
+                <Nav>
+                  <Link to={router.CATEGORY_LIST}
+                    className="nav-link">
+                    Categories
                   </Link>
                 </Nav>
                 <Nav>
@@ -114,6 +123,12 @@ const App = () => {
                     element={<EditVenue />} />
                   <Route path={router.VENUE_LIST}
                     element={<VenueList />} />
+                  <Route path={router.CATEGORY_CREATE}
+                    element={<CreateCategory />} />
+                  <Route path={router.CATEGORY_EDIT + '/:id'}
+                    element={<EditCategory />} />
+                  <Route path={router.CATEGORY_LIST}
+                    element={<CategoryList />} />
                   <Route path={router.REVIEW_CREATE}
                     element={<CreateReview />} />
                   <Route path={router.REVIEW_EDIT + '/:id'}

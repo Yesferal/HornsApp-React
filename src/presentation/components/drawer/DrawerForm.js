@@ -37,6 +37,7 @@ const DrawerForm = (props) => {
         });
 
     const [screensOptions, setScreensOptions] = useState([]);
+    const [categoriesOptions, setCategoriesOptions] = useState([]);
 
     useEffect(() => {
         const axiosDataSource = new AxiosDataSource()
@@ -48,6 +49,18 @@ const DrawerForm = (props) => {
                     title,
                 } = res;
                 return { value: res, label: `${key}: ${title?.en} / ${title?.es}` }
+            }))
+        }, (error) => {
+            console.log(`YESFERAL: List: error: ${error}`);
+        });
+
+        axiosDataSource.makeGetRequest(axiosDataSource.HTTP_CATEGORY_REQUEST_PATH, (response) => {
+            setCategoriesOptions(response.data.map((res, i) => {
+                const {
+                    key,
+                    name,
+                } = res;
+                return { value: res, label: `${key}: ${name?.en} / ${name?.es}` }
             }))
         }, (error) => {
             console.log(`YESFERAL: List: error: ${error}`);
@@ -71,7 +84,7 @@ const DrawerForm = (props) => {
                         <FormGroup>
                             <hr />
                             <FormLabel for="categories">Categories</FormLabel>
-                            <Field name="categories" component={ArrayCategoryRenderComponent} categories={values.categories} />
+                            <Field name="categories" component={MultiSelectObjectComponent} options={categoriesOptions} />
                         </FormGroup>
                         <div>
                             &nbsp;
