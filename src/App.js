@@ -57,13 +57,13 @@ const App = () => {
                 <Nav>
                   <Link to={router.CONCERT_LIST}
                     className="nav-link">
-                    Concerts
+                    Events
                   </Link>
                 </Nav>
                 <Nav>
                   <Link to={router.BAND_LIST}
                     className="nav-link">
-                    Bands
+                    Activities
                   </Link>
                 </Nav>
                 <Nav>
