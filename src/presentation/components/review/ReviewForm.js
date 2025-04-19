@@ -4,12 +4,11 @@ import React from "react";
 import * as Yup from "yup";
 import {
     Formik, Form,
-    Field, ErrorMessage
+    Field
 } from "formik";
-import {
-    FormGroup, Button, FormLabel
-} from "react-bootstrap";
-import { FieldArrayServerObjectComponent } from "../common/array.server.object.component";
+import { Button } from "react-bootstrap";
+import { ArrayViewRenderComponent } from "../common/render/array.view.render.component";
+import { FieldWithErrorMessageComponent } from "../common/field.with.error.message.component";
 import { LocalizedStringComponent } from "../common/localized.string.component";
 
 export function initReviewForm(formValues, onSubmit, title) {
@@ -27,13 +26,10 @@ const ReviewForm = (props) => {
     const validationSchema =
         Yup.object().shape({
             key: Yup.string().required("Required"),
-            data: Yup.object().shape({
-                title: Yup.object().shape({
-                    en: Yup.string().nullable(),
-                    es: Yup.string()
-                })
+            title: Yup.object().shape({
+                en: Yup.string().nullable(),
+                es: Yup.string()
             }),
-            id: Yup.string().nullable(),
             views: Yup.array()
         });
 
@@ -43,34 +39,9 @@ const ReviewForm = (props) => {
                 validationSchema={validationSchema}>
                 {({ values }) => (
                     <Form>
-                        <FormGroup>
-                            <FormLabel for="key">Key</FormLabel>
-                            <Field name="key" type="text"
-                                className="form-control" />
-                            <ErrorMessage
-                                name="key"
-                                className="d-block 
-                                                    invalid-feedback"
-                                component="span"
-                            />
-                        </FormGroup>
-                        <Field name="data.title" component={LocalizedStringComponent} />
-                        <FormGroup>
-                            <FormLabel for="id">Id</FormLabel>
-                            <Field name="id" type="text"
-                                className="form-control" />
-                            <ErrorMessage
-                                name="id"
-                                className="d-block 
-                                                    invalid-feedback"
-                                component="span"
-                            />
-                        </FormGroup>
-                        <FormGroup>
-                            <hr />
-                            <FormLabel for="views">Views</FormLabel>
-                            <Field name="views" component={FieldArrayServerObjectComponent} elements={values.views} editDetails={true} />
-                        </FormGroup>
+                        <Field name="key" component={FieldWithErrorMessageComponent} />
+                        <Field name="title" component={LocalizedStringComponent} />
+                        <Field name="views" component={ArrayViewRenderComponent} elements={values.views} editDetails={true} />
                         <div>
                             &nbsp;
                         </div>

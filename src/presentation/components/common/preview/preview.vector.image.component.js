@@ -4,10 +4,15 @@ export const PreviewVectorImageComponent = ({
     field, // { name, value, onChange, onBlur }
     form, // also values, setXXXX, handleXXXX, dirty, isValid, status, etc.
 }) => {
-    const images = require.context('../../../../assets', true)
+    const images = require.context('../../../../../assets', true)
     let asset = images('./ic_music_note.svg');
     if (field.value) {
-        asset = images('./ic_' + field.value + '.svg');
+        try {
+            let path = './ic_' + field.value + '.svg'
+            asset = images(path);
+        } catch {
+            asset = images('./ic_music_note.svg');
+        }
     }
 
     return (

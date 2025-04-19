@@ -1,16 +1,18 @@
 /* Copyright © 2025 Yesferal Cueva. All rights reserved. */
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import * as Yup from "yup";
 import {
     Formik, Form,
-    Field, ErrorMessage
+    Field
 } from "formik";
 import {
     FormGroup, Button, FormLabel
 } from "react-bootstrap";
-import { FieldArrayServerObjectComponent } from "../common/array.server.object.component";
-import { FieldArrayScreenObjectComponent } from "../common/array.screen.object.component";
+import { ArrayCategoryRenderComponent } from "../common/render/array.category.render.component";
+import { AxiosDataSource } from "../../../framework/axios/axios.datasource";
+import { MultiSelectObjectComponent } from "../common/select/select.multi.object.component";
+import { FieldWithErrorMessageComponent } from "../common/field.with.error.message.component";
 
 export function initDrawerForm(formValues, onSubmit, title) {
     return (
@@ -26,13 +28,31 @@ const DrawerForm = (props) => {
 
     const validationSchema =
         Yup.object().shape({
-            appVersion: Yup.number().required("Required"),
-            docVersion: Yup.number().required("Required"),
             platform: Yup.string().required("Required"),
+            appId: Yup.string().required("Required"),
+            docVersion: Yup.number().required("Required"),
+            appVersion: Yup.number().required("Required"),
             screens: Yup.array(),
-            newest: Yup.array(),
             categories: Yup.array(),
         });
+
+    const [screensOptions, setScreensOptions] = useState([]);
+
+    useEffect(() => {
+        const axiosDataSource = new AxiosDataSource()
+
+        axiosDataSource.makeGetRequest(axiosDataSource.HTTP_REVIEW_REQUEST_PATH, (response) => {
+            setScreensOptions(response.data.map((res, i) => {
+                const {
+                    key,
+                    title,
+                } = res;
+                return { value: res, label: `${key}: ${title?.en} / ${title?.es}` }
+            }))
+        }, (error) => {
+            console.log(`YESFERAL: List: error: ${error}`);
+        });
+    }, []);
 
     return (
         <div className="form-wrapper">
@@ -40,48 +60,18 @@ const DrawerForm = (props) => {
                 validationSchema={validationSchema}>
                 {({ values }) => (
                     <Form>
+                        <Field name="platform" component={FieldWithErrorMessageComponent} />
+                        <Field name="appId" component={FieldWithErrorMessageComponent} />
+                        <Field name="docVersion" component={FieldWithErrorMessageComponent} />
+                        <Field name="appVersion" component={FieldWithErrorMessageComponent} />
                         <FormGroup>
-                            <FormLabel for="docVersion">Doc Version Code</FormLabel>
-                            <Field name="docVersion" type="number"
-                                className="form-control" />
-                            <ErrorMessage
-                                name="docVersion"
-                                className="d-block 
-                                                    invalid-feedback"
-                                component="span"
-                            />
-                        </FormGroup>
-                        <FormGroup>
-                            <FormLabel for="appVersion">App Version Code</FormLabel>
-                            <Field name="appVersion" type="number"
-                                className="form-control" />
-                            <ErrorMessage
-                                name="appVersion"
-                                className="d-block 
-                                                    invalid-feedback"
-                                component="span"
-                            />
-                        </FormGroup>
-                        <FormGroup>
-                            <FormLabel for="platform">Platform</FormLabel>
-                            <Field name="platform" type="text"
-                                className="form-control" />
-                            <ErrorMessage
-                                name="platform"
-                                className="d-block 
-                                                    invalid-feedback"
-                                component="span"
-                            />
-                        </FormGroup>
-                        <FormGroup>
-                            <hr />
-                            <FormLabel for="views">Views</FormLabel>
-                            <Field name="views" component={FieldArrayServerObjectComponent} elements={values.views} />
+                            <FormLabel for="screens">Screens</FormLabel>
+                            <Field name="screens" component={MultiSelectObjectComponent} options={screensOptions} />
                         </FormGroup>
                         <FormGroup>
                             <hr />
                             <FormLabel for="categories">Categories</FormLabel>
-                            <Field name="categories" component={FieldArrayServerObjectComponent} elements={values.categories} />
+                            <Field name="categories" component={ArrayCategoryRenderComponent} categories={values.categories} />
                         </FormGroup>
                         <div>
                             &nbsp;

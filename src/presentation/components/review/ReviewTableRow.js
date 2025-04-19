@@ -15,7 +15,7 @@ const ReviewTableRow =
         const {
             _id,
             key,
-            data: {title},
+            title,
             views,
         } = props.obj;
         const axiosDataSource = new AxiosDataSource()
@@ -37,7 +37,7 @@ const ReviewTableRow =
         return (
             <tr>
                 <td>{key} ({views?.length ?? 0})</td>
-                <td>{title.en}</td>
+                <td>{title?.en} / {title?.es}</td>
                 <td>
                     <Link className="edit-link"
                         to={router.REVIEW_EDIT + "/" + _id}>
