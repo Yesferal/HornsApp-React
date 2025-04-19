@@ -21,7 +21,8 @@ class ConcertModel {
         tags: [],
         venue: null,
         state: null,
-        bands: [],
+        activities: [],
+        lineup: null,
     }
 }
 

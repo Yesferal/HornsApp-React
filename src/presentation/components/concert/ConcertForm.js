@@ -9,13 +9,15 @@ import {
 import {
     FormGroup, Button, FormLabel
 } from "react-bootstrap";
-import { MultiSelectComponent } from "../common/multi.select.component";
-import { PreviewImageComponent } from "../common/preview.image.component";
+import { MultiSelectComponent } from "../common/select/select.multi.component";
+import { PreviewImageComponent } from "../common/preview/preview.image.component";
 import { AxiosDataSource } from "../../../framework/axios/axios.datasource";
-import { MultiSelectObjectComponent } from "../common/multi.select.object.component";
-import { SingleSelectObjectComponent } from "../common/single.select.object.component";
+import { MultiSelectObjectComponent } from "../common/select/select.multi.object.component";
+import { SingleSelectObjectComponent } from "../common/select/select.single.object.component";
 import { DatePickerComponent } from "../common/date.picker.component";
-import { FieldArrayServerObjectComponent } from "../common/array.server.object.component";
+import { ArrayViewRenderComponent } from "../common/render/array.view.render.component";
+import { FieldWithErrorMessageComponent } from "../common/field.with.error.message.component";
+import { LocalizedStringComponent } from "../common/localized.string.component";
 
 export function initConcertForm(formValues, onSubmit, title) {
     return (
@@ -61,14 +63,14 @@ const ConcertForm = (props) => {
         { value: 'ROCK', label: 'Rock' },
     ]
 
-    const [bandOptions, setBandOptions] = useState([]);
+    const [activitiesOptions, setActivitiesOptions] = useState([]);
     const [venueOptions, setVenueOptions] = useState([]);
     const [statusOptions, setStatusOptions] = useState([]);
     useEffect(() => {
         const axiosDataSource = new AxiosDataSource()
         
         axiosDataSource.makeGetRequest(axiosDataSource.HTTP_BAND_REQUEST_PATH, (response) => {
-            setBandOptions(response.data.map((res, i) => {
+            setActivitiesOptions(response.data.map((res, i) => {
                 const {
                     name
                 } = res;
@@ -107,49 +109,8 @@ const ConcertForm = (props) => {
                 validationSchema={validationSchema}>
                 {({ values }) => (
                     <Form>
-                        <FormGroup>
-                            <FormLabel for="name">Name</FormLabel>
-                            <Field name="name" type="text"
-                                className="form-control" />
-                            <ErrorMessage
-                                name="name"
-                                className="d-block 
-                                invalid-feedback"
-                                component="span"
-                            />
-                        </FormGroup>
-                        <FormGroup>
-                            <FormLabel for="about.en">About (EN)</FormLabel>
-                            <div className="control">
-                                <Field name="about.en"
-                                    type="text"
-                                    as="textarea"
-                                    className="form-control"
-                                    placeholder="About (EN)" />
-                                <ErrorMessage
-                                    name="about.en"
-                                    className="d-block invalid-feedback"
-                                    component="span"
-                                />
-                            </div>
-                        </FormGroup>
-                        <FormGroup>
-                            <label htmlFor="about.es">About (ES)</label>
-                            <div className="control">
-                                <Field name="about.es"
-                                    type="text"
-                                    as="textarea"
-                                    className="form-control"
-                                    placeholder="About (ES)" />
-
-                                <ErrorMessage
-                                    name="about.es"
-                                    className="d-block 
-                                    invalid-feedback"
-                                    component="span"
-                                />
-                            </div>
-                        </FormGroup>
+                        <Field name="name" component={FieldWithErrorMessageComponent} />
+                        <Field name="about" component={LocalizedStringComponent} />
                         <FormGroup>
                             <FormLabel for="dateTime">DateTime</FormLabel>
                             <Field name="dateTime" component={DatePickerComponent} />
@@ -160,60 +121,11 @@ const ConcertForm = (props) => {
                                 component="span"
                             />
                         </FormGroup>
-                        <FormGroup>
-                            <FormLabel for="headliner.name">Headliner Name</FormLabel>
-                            <Field name="headliner.name"
-                                type="text"
-                                className="form-control" />
-                            <ErrorMessage
-                                name="headliner.name"
-                                className="d-block 
-                                invalid-feedback"
-                                component="span"
-                            />
-                        </FormGroup>
-                        <FormGroup>
-                            <FormLabel for="headliner.url">Headliner Image(URL)</FormLabel>
-                            <Field name="headliner.url"
-                                type="text"
-                                className="form-control" />
-                            <Field name="headliner.url" component={PreviewImageComponent} />
-                            <ErrorMessage
-                                name="headliner.url"
-                                className="d-block 
-                                invalid-feedback"
-                                component="span"
-                            />
-                        </FormGroup>
-                        <FormGroup>
-                            <FormLabel for="ticketing.name">Ticketing Name</FormLabel>
-                            <Field name="ticketing.name"
-                                type="text"
-                                className="form-control" />
-                            <ErrorMessage
-                                name="ticketing.name"
-                                className="d-block 
-                                invalid-feedback"
-                                component="span"
-                            />
-                        </FormGroup>
-                        <FormGroup>
-                            <FormLabel for="ticketing.url">Ticketing Url</FormLabel>
-                            <Field name="ticketing.url"
-                                type="text"
-                                className="form-control" />
-                            <ErrorMessage
-                                name="ticketing.url"
-                                className="d-block 
-                                invalid-feedback"
-                                component="span"
-                            />
-                        </FormGroup>
-                        <FormGroup>
-                            <hr />
-                            <FormLabel for="links">Links</FormLabel>
-                            <Field name="links" component={FieldArrayServerObjectComponent} elements={values.links} />
-                        </FormGroup>
+                        <Field name="headliner.name" component={FieldWithErrorMessageComponent} />
+                        <Field name="headliner.url" component={PreviewImageComponent} />
+                        <Field name="ticketing.name" component={FieldWithErrorMessageComponent} />
+                        <Field name="ticketing.url" component={FieldWithErrorMessageComponent} />
+                        <Field name="links" component={ArrayViewRenderComponent} elements={values.links} />
                         <FormGroup>
                             <FormLabel for="tags">Tags</FormLabel>
                             <Field name="tags" component={MultiSelectComponent} options={tagOptions} />
@@ -245,10 +157,10 @@ const ConcertForm = (props) => {
                             />
                         </FormGroup>
                         <FormGroup>
-                            <FormLabel for="bands">Bands</FormLabel>
-                            <Field name="bands" component={MultiSelectObjectComponent} options={bandOptions} />
+                            <FormLabel for="activities">Activities</FormLabel>
+                            <Field name="activities" component={MultiSelectObjectComponent} options={activitiesOptions} />
                             <ErrorMessage
-                                name="bands"
+                                name="activities"
                                 className="d-block 
                                 invalid-feedback"
                                 component="span"
