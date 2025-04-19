@@ -9,8 +9,8 @@ import {
 import {
     FormGroup, Button, FormLabel
 } from "react-bootstrap";
-import { PreviewUrlComponent } from "../common/preview.url.component";
 import { LocalizedStringComponent } from "../common/localized.string.component";
+import { PreviewUrlComponent } from "../common/preview/preview.url.component";
 
 export function initVenueForm(formValues, onSubmit, title) {
     return (
@@ -30,10 +30,6 @@ const VenueForm = (props) => {
                 en: Yup.string().nullable(),
                 es: Yup.string(),
             }),
-            description: Yup.object().shape({
-                en: Yup.string().nullable(),
-                es: Yup.string(),
-            }),
             mapSearchName: Yup.string().required("Required"),
             latitude: Yup.number().required("Required"),
             longitude: Yup.number().required("Required"),
@@ -45,7 +41,6 @@ const VenueForm = (props) => {
                 validationSchema={validationSchema}>
                 <Form>
                     <Field name="name" component={LocalizedStringComponent} />
-                    <Field name="description" component={LocalizedStringComponent} />
                     <FormGroup>
                         <FormLabel for="mapSearchName">Map-Search Name</FormLabel>
                         <Field name="mapSearchName" type="text"
