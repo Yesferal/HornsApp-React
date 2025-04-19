@@ -11,6 +11,7 @@ import {
 } from "react-bootstrap";
 import { LocalizedStringComponent } from "../common/localized.string.component";
 import { PreviewUrlComponent } from "../common/preview/preview.url.component";
+import { FieldWithErrorMessageComponent } from "../common/field.with.error.message.component";
 
 export function initVenueForm(formValues, onSubmit, title) {
     return (
@@ -41,41 +42,9 @@ const VenueForm = (props) => {
                 validationSchema={validationSchema}>
                 <Form>
                     <Field name="name" component={LocalizedStringComponent} />
-                    <FormGroup>
-                        <FormLabel for="mapSearchName">Map-Search Name</FormLabel>
-                        <Field name="mapSearchName" type="text"
-                            className="form-control" />
-                        <ErrorMessage
-                            name="mapSearchName"
-                            className="d-block 
-                                invalid-feedback"
-                            component="span"
-                        />
-                    </FormGroup>
-                    <FormGroup>
-                        <FormLabel for="latitude">Latitude</FormLabel>
-                        <Field name="latitude"
-                            type="number"
-                            className="form-control" />
-                        <ErrorMessage
-                            name="latitude"
-                            className="d-block 
-                                invalid-feedback"
-                            component="span"
-                        />
-                    </FormGroup>
-                    <FormGroup>
-                        <FormLabel for="longitude">Longitude</FormLabel>
-                        <Field name="longitude"
-                            type="number"
-                            className="form-control" />
-                        <ErrorMessage
-                            name="longitude"
-                            className="d-block 
-                                invalid-feedback"
-                            component="span"
-                        />
-                    </FormGroup>
+                    <Field name="mapSearchName" component={FieldWithErrorMessageComponent} />
+                    <Field name="latitude" component={FieldWithErrorMessageComponent} />
+                    <Field name="longitude" component={FieldWithErrorMessageComponent} />
                     <FormGroup>
                         <FormLabel for="map">Url Preview</FormLabel>
                         <PreviewUrlComponent name="map" />
