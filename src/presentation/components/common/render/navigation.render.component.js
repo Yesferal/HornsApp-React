@@ -14,6 +14,7 @@ export const NavigationRenderComponent = ({
             <FormLabel for={`Navigation`}>Navigation Section</FormLabel>
             <Field name={`${field.name}.key`} component={FieldWithErrorMessageComponent} />
             <Field name={`${field.name}.parameters.param_android_uri`} component={FieldWithErrorMessageComponent} />
+            <Field name={`${field.name}.parameters.param_parcelable_view_data.id`} component={FieldWithErrorMessageComponent} />
         </div>
     )
 };

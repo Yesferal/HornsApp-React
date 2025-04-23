@@ -1,12 +1,11 @@
 /* Copyright © 2025 Yesferal Cueva. All rights reserved. */
 
 import { Field, FieldArray } from "formik"
-import { Button, FormLabel } from "react-bootstrap"
-import { DataRenderComponent } from "./data.render.component"
-import { ChildrenRenderComponent } from "./children.render.component"
-import { NavigationRenderComponent } from "./navigation.render.component"
-import { FieldWithErrorMessageComponent } from "../field.with.error.message.component"
-import { StyleRenderComponent } from "./style.render.component"
+import { Button } from "react-bootstrap"
+import { useState } from "react"
+import { EditViewItem } from "./view.render.component"
+import Modal from "../modal.component"
+import { PreviewRenderComponent } from "./preview.render.component"
 
 export const ArrayViewRenderComponent = ({
     editDetails,
@@ -14,46 +13,54 @@ export const ArrayViewRenderComponent = ({
     field, // { name, value, onChange, onBlur }
     form, // also values, setXXXX, handleXXXX, dirty, isValid, status, etc.
 }) => {
+    const [selectedItem, setSelectedItem] = useState(null);
+
     if (!elements) {
         return <div></div>
     }
 
-    return <FieldArray name={field.name}>
+    return <FieldArray>
         {({ insert, remove, push }) => (
             <div>
                 {elements.length > 0 &&
                     elements.map((element, index) => (
-                        <div className="row" key={index}>
-                            <FormLabel for={`${field.name}.${index}`}>View #{index}</FormLabel>
-                            {editDetails && <div className="col">
-                                <FormLabel for={`${field.name}.${index}`}>{`#${index}: View`}</FormLabel>
-                                <Field name={`${field.name}.${index}.key`} component={FieldWithErrorMessageComponent} />
-                                <Field name={`${field.name}.${index}.data`} component={DataRenderComponent} />
-                                <Field name={`${field.name}.${index}.style`} component={StyleRenderComponent} />
-                                <Field name={`${field.name}.${index}.children`} component={ChildrenRenderComponent} />
-                                <Field name={`${field.name}.${index}.navigation`} component={NavigationRenderComponent} />
+                        <div className="row">
+                            {editDetails && <div className="col-11" key={index} onClick={() => setSelectedItem({ ...element, index })}>
+                                <Field name={`${field.name}.${index}`} component={PreviewRenderComponent} element={element} />
                                 <div>
                                     &nbsp;
                                 </div>
+                            </div>}
+
+                            <div className="col-1" >
                                 <Button variant="danger" size="lg"
                                     block="block"
                                     onClick={() => remove(index)}>
-                                    Remove View #{index}
+                                    (-) #{index}
                                 </Button>
-                                <hr />
-
-                            </div>}
-
-                            {/*
-                            TODO: Fix this , it has some delay render issue
-                            <Field name={`${field.name}.${index}`} component={PreviewRenderComponent} element={element} />
-                            */}
+                                <div>
+                                    &nbsp;
+                                </div>
+                            </div>
                         </div>
                     ))}
 
+
+                {selectedItem && (() => {
+                    return (
+                        <Modal isOpen={selectedItem != null}>
+                            <Field
+                                name={`${field.name}.${selectedItem.index}`}
+                                component={EditViewItem}
+                                onCancel={() => setSelectedItem(null)}
+                            />
+                        </Modal>
+                    );
+                })()}
+
                 {editDetails && <div>
                     <Button variant="danger" size="lg"
-                        block="block" onClick={() => push({ title: { en: '', es: '' } })}>
+                        block="block" onClick={() => push({ key: '' })}>
                         Add new View
                     </Button>
                     <hr />

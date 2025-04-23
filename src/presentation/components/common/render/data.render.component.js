@@ -4,6 +4,7 @@ import { Field } from "formik";
 import { LocalizedStringComponent } from "../localized.string.component";
 import { FormLabel } from "react-bootstrap";
 import { FieldWithErrorMessageComponent } from "../field.with.error.message.component";
+import { PreviewImageComponent } from "../preview/preview.image.component";
 
 export const DataRenderComponent = ({
     field, // { name, value, onChange, onBlur }
@@ -17,7 +18,7 @@ export const DataRenderComponent = ({
             <Field name={`${field.name}.subtitle`} component={LocalizedStringComponent} />
             <Field name={`${field.name}.description`} component={LocalizedStringComponent} />
             <Field name={`${field.name}.icon`} component={FieldWithErrorMessageComponent} />
-            <Field name={`${field.name}.imageUrl`} component={FieldWithErrorMessageComponent} />
+            <Field name={`${field.name}.imageUrl`} component={PreviewImageComponent} />
         </div>
     )
 };

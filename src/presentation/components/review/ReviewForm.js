@@ -41,6 +41,9 @@ const ReviewForm = (props) => {
                     <Form>
                         <Field name="key" component={FieldWithErrorMessageComponent} />
                         <Field name="title" component={LocalizedStringComponent} />
+                        <div>
+                            &nbsp;
+                        </div>
                         <Field name="views" component={ArrayViewRenderComponent} elements={values.views} editDetails={true} />
                         <div>
                             &nbsp;

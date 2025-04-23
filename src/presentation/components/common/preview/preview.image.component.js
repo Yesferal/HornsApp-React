@@ -2,6 +2,7 @@
 
 import { Field } from "formik";
 import { FieldWithErrorMessageComponent } from "../field.with.error.message.component";
+import { UrlImageComponent } from "../url.image.component";
 
 export const PreviewImageComponent = ({
     field, // { name, value, onChange, onBlur }
@@ -10,7 +11,7 @@ export const PreviewImageComponent = ({
     return (
         <div>
             <Field name={field.name} component={FieldWithErrorMessageComponent} />
-            <img src={field.value} alt={field.name} width="100%" />
+            <Field name={field.name} component={UrlImageComponent} />
         </div>
     )
 };
