@@ -19,80 +19,94 @@ export const ArrayViewRenderComponent = ({
         return <div></div>
     }
 
-    return <FieldArray>
-        {({ insert, remove, push }) => (
-            <div>
-                {elements.length > 0 && <div className="row">
-                    <label className="col-5" >{`Views (Localized or Language):`}</label>
-                    <label>
-                        <input
-                            type="radio"
-                            name="localized"
-                            value="en"
-                            checked={localized === "en"}
-                            onChange={() => setLocalized("en")}
-                        />
-                        English
-                    </label>
+    return <div>
+        {elements.length > 0 && <div className="row">
+            <label className="col-5" >{`Views (Localized or Language):`}</label>
+            <label>
+                <input
+                    type="radio"
+                    name="localized"
+                    value="en"
+                    checked={localized === "en"}
+                    onChange={() => setLocalized("en")}
+                />
+                English
+            </label>
 
-                    <label>
-                        <input
-                            type="radio"
-                            name="localized"
-                            value="es"
-                            checked={localized === "es"}
-                            onChange={() => setLocalized("es")}
-                        />
-                        Spanish
-                    </label>
-                </div>}
+            <label>
+                <input
+                    type="radio"
+                    name="localized"
+                    value="es"
+                    checked={localized === "es"}
+                    onChange={() => setLocalized("es")}
+                />
+                Spanish
+            </label>
+        </div>}
+        <div>
+            &nbsp;
+        </div>
+        <FieldArray name={`${field.name}`}>
+            {({ insert, remove, push }) => (
                 <div>
-                    &nbsp;
-                </div>
-                {elements.length > 0 &&
-                    elements.map((element, index) => (
-                        <div className="row">
-                            <div className="col-11" key={index} onClick={() => setSelectedItem({ ...element, index })}>
-                                <Field name={`${field.name}.${index}`} component={PreviewRenderComponent} element={element} localized={`${localized}`} />
-                                <div>
-                                    &nbsp;
-                                </div>
-                            </div>
-
-                            <div className="col-1" >
-                                <Button variant="danger" size="lg"
-                                    block="block"
-                                    onClick={() => remove(index)}>
-                                    (-) #{index}
+                    {elements.length > 0 &&
+                        elements.map((element, index) => (
+                            <div>
+                                <Button
+                                    size="lg"
+                                    onClick={() => insert(index, { key: '' })} // Inserts at position 1
+                                >
+                                    (+)
                                 </Button>
-                                <div>
-                                    &nbsp;
+                                <div className="row">
+
+                                    <div className="col-11" key={index} onClick={() => setSelectedItem({ ...element, index })}>
+                                        <Field name={`${field.name}.${index}`} component={PreviewRenderComponent} element={element} localized={`${localized}`} />
+                                        <div>
+                                            &nbsp;
+                                        </div>
+                                    </div>
+
+                                    <div className="col-1" >
+
+                                        <Button variant="danger" size="lg"
+                                            block="block"
+                                            onClick={() => {
+                                                remove(index)
+                                            }}>
+                                            (X) #{index}
+                                        </Button>
+                                        <div>
+                                            &nbsp;
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    ))}
+                        ))}
 
 
-                {selectedItem && (() => {
-                    return (
-                        <Modal isOpen={selectedItem != null}>
-                            <Field
-                                name={`${field.name}.${selectedItem.index}`}
-                                component={EditViewItem}
-                                onCancel={() => setSelectedItem(null)}
-                            />
-                        </Modal>
-                    );
-                })()}
+                    {selectedItem && (() => {
+                        return (
+                            <Modal isOpen={selectedItem != null}>
+                                <Field
+                                    name={`${field.name}.${selectedItem.index}`}
+                                    component={EditViewItem}
+                                    onCancel={() => setSelectedItem(null)}
+                                />
+                            </Modal>
+                        );
+                    })()}
 
-                <div>
-                    <Button variant="danger" size="lg"
-                        block="block" onClick={() => push({ key: '' })}>
-                        Add new View
-                    </Button>
-                    <hr />
+                    <div>
+                        <Button variant="danger" size="lg"
+                            block="block" onClick={() => push({ key: '' })}>
+                            Add new View
+                        </Button>
+                        <hr />
+                    </div>
                 </div>
-            </div>
-        )}
-    </FieldArray>
+            )}
+        </FieldArray>
+    </div>
 }
