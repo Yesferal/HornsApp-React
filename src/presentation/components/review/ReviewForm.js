@@ -44,7 +44,7 @@ const ReviewForm = (props) => {
                         <div>
                             &nbsp;
                         </div>
-                        <Field name="views" component={ArrayViewRenderComponent} elements={values.views} editDetails={true} />
+                        <Field name="views" component={ArrayViewRenderComponent} elements={values.views} />
                         <div>
                             &nbsp;
                         </div>

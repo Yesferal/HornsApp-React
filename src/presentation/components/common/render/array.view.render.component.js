@@ -8,12 +8,12 @@ import Modal from "../modal.component"
 import { PreviewRenderComponent } from "./preview.render.component"
 
 export const ArrayViewRenderComponent = ({
-    editDetails,
     elements,
     field, // { name, value, onChange, onBlur }
     form, // also values, setXXXX, handleXXXX, dirty, isValid, status, etc.
 }) => {
     const [selectedItem, setSelectedItem] = useState(null);
+    const [localized, setLocalized] = useState("en")
 
     if (!elements) {
         return <div></div>
@@ -22,15 +22,42 @@ export const ArrayViewRenderComponent = ({
     return <FieldArray>
         {({ insert, remove, push }) => (
             <div>
+                {elements.length > 0 && <div className="row">
+                    <label className="col-5" >{`Views (Localized or Language):`}</label>
+                    <label>
+                        <input
+                            type="radio"
+                            name="localized"
+                            value="en"
+                            checked={localized === "en"}
+                            onChange={() => setLocalized("en")}
+                        />
+                        English
+                    </label>
+
+                    <label>
+                        <input
+                            type="radio"
+                            name="localized"
+                            value="es"
+                            checked={localized === "es"}
+                            onChange={() => setLocalized("es")}
+                        />
+                        Spanish
+                    </label>
+                </div>}
+                <div>
+                    &nbsp;
+                </div>
                 {elements.length > 0 &&
                     elements.map((element, index) => (
                         <div className="row">
-                            {editDetails && <div className="col-11" key={index} onClick={() => setSelectedItem({ ...element, index })}>
-                                <Field name={`${field.name}.${index}`} component={PreviewRenderComponent} element={element} />
+                            <div className="col-11" key={index} onClick={() => setSelectedItem({ ...element, index })}>
+                                <Field name={`${field.name}.${index}`} component={PreviewRenderComponent} element={element} localized={`${localized}`} />
                                 <div>
                                     &nbsp;
                                 </div>
-                            </div>}
+                            </div>
 
                             <div className="col-1" >
                                 <Button variant="danger" size="lg"
@@ -58,13 +85,13 @@ export const ArrayViewRenderComponent = ({
                     );
                 })()}
 
-                {editDetails && <div>
+                <div>
                     <Button variant="danger" size="lg"
                         block="block" onClick={() => push({ key: '' })}>
                         Add new View
                     </Button>
                     <hr />
-                </div>}
+                </div>
             </div>
         )}
     </FieldArray>

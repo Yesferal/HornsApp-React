@@ -5,6 +5,7 @@ import { Field, FieldArray } from "formik";
 import { UrlImageComponent } from "../url.image.component";
 
 export const PreviewRenderComponent = ({
+    localized,
     element,
     field, // { name, value, onChange, onBlur }
     form, // also values, setXXXX, handleXXXX, dirty, isValid, status, etc.
@@ -16,12 +17,12 @@ export const PreviewRenderComponent = ({
                 {element.key == "AD_VIEW" && <div style={{ backgroundColor: "#DDDDDD", width: element.style?.width, height: element.style?.height, lineHeight: element.style?.height + "px", textAlign: "center", }}>Advertising (Height: {element.style?.height})</div>}
             </div>
             <div>
-                {element.data?.title?.es && <div class="row">
+                {element.data?.title && <div class="row">
                     <div class="col-1" ><Field name={`${field.name}.data.icon`} component={PreviewVectorImageComponent} ></Field></div>
-                    <div class="col-11"><h2 style={{ color: element.style?.textColor }}>{element.data?.title?.es}</h2></div>
+                    <div class="col-11"><h2 style={{ color: element.style?.textColor }}>{element.data?.title[localized]}</h2></div>
                 </div>}
-                {element.data?.subtitle?.es && <div><h6 style={{ color: element.style?.textColor }}>{element.data?.subtitle?.es}</h6></div>}
-                {element.data?.description?.es && <div><p style={{ color: element.style?.textColor }}>{element.data?.description?.es}</p><div>&nbsp;</div></div>}
+                {element.data?.subtitle && <div><h6 style={{ color: element.style?.textColor }}>{element.data?.subtitle[localized]}</h6></div>}
+                {element.data?.description && <div><p style={{ color: element.style?.textColor }}>{element.data?.description[localized]}</p><div>&nbsp;</div></div>}
                 {element.data?.imageUrl && <div><Field name={`${field.name}.data.imageUrl`} component={UrlImageComponent} /><div>&nbsp;</div></div>}
                 {element.key != "AD_VIEW" && element.childs?.key && <div>
                     <h6 style={{ color: element.style?.textColor }}>{element.key} & {element.childs?.key}</h6>

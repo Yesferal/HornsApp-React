@@ -1,12 +1,12 @@
 /* Copyright © 2025 Yesferal Cueva. All rights reserved. */
 
-import { Field } from 'formik';
+import { ErrorMessage, Field } from 'formik';
 import { DataRenderComponent } from './data.render.component';
 import { StyleRenderComponent } from './style.render.component';
 import { ChildrenRenderComponent } from './children.render.component';
 import { NavigationRenderComponent } from './navigation.render.component';
-import { FieldWithErrorMessageComponent } from '../field.with.error.message.component';
-import { Button } from 'react-bootstrap';
+import { Button, FormGroup, FormLabel } from 'react-bootstrap';
+import { SingleSelectComponent } from '../select/select.single.component';
 
 export const EditViewItem = ({
     onCancel,
@@ -14,11 +14,34 @@ export const EditViewItem = ({
     form, // also values, setXXXX, handleXXXX, dirty, isValid, status, etc.
 }) => {
 
+    const viewsOptions = [
+        { value: 'ROW_VIEW', label: 'Row View' },
+        { value: 'COLUMN_VIEW', label: 'Column View' },
+        { value: 'CARD_VIEW', label: 'Card View' },
+        { value: 'ICON_CARD_VIEW', label: 'Card View with Icon' },
+        { value: 'AD_VIEW', label: 'Ad View' },
+        { value: 'CAROUSEL_VIEW', label: 'Carousel View' },
+        { value: 'TITLE_REVIEW_CARD_VIEW', label: 'Title for Screen' },
+        { value: 'SUBTITLE_REVIEW_CARD_VIEW', label: 'Subtitle for Screen' },
+        { value: 'DESCRIPTION_REVIEW_CARD_VIEW', label: 'Description for Screen' },
+        { value: 'IMAGE_REVIEW_CARD_VIEW', label: 'Image for Screen' },
+        { value: 'BUTTON_CARD_VIEW', label: 'Button for Screen' },
+        { value: 'VISIBILITY_GONE_CARD_VIEW', label: 'Invisible Card' },
+    ]
+
     return (
         <div className="edit-view-wrapper">
             <h3>Edit View Item</h3>
-
-            <Field name={`${field.name}.key`} component={FieldWithErrorMessageComponent} />
+            <FormGroup>
+                <FormLabel for={`${field.name}.key`}>Key</FormLabel>
+                <Field name={`${field.name}.key`} component={SingleSelectComponent} options={viewsOptions} />
+                <ErrorMessage
+                    name="tags"
+                    className="d-block 
+                                invalid-feedback"
+                    component="span"
+                />
+            </FormGroup>
             <div>
                 &nbsp;
             </div>
