@@ -47,7 +47,7 @@ const ConcertForm = (props) => {
                 url: Yup.string().nullable(),
             }),
             links: Yup.array(),
-            tags: Yup.array().nullable(),
+            categories: Yup.array().nullable(),
             venue: Yup.object().shape({
                 _id: Yup.string(),
             }),
@@ -56,19 +56,14 @@ const ConcertForm = (props) => {
             }),
         });
 
-    const tagOptions = [
-        { value: 'JAZZ', label: 'Jazz' },
-        { value: 'METAL', label: 'Metal' },
-        { value: 'POP', label: 'Pop' },
-        { value: 'ROCK', label: 'Rock' },
-    ]
-
     const [activitiesOptions, setActivitiesOptions] = useState([]);
     const [venueOptions, setVenueOptions] = useState([]);
     const [statusOptions, setStatusOptions] = useState([]);
+    const [categoriesOptions, setCategoriesOptions] = useState([]);
+    
     useEffect(() => {
         const axiosDataSource = new AxiosDataSource()
-        
+
         axiosDataSource.makeGetRequest(axiosDataSource.HTTP_BAND_REQUEST_PATH, (response) => {
             setActivitiesOptions(response.data.map((res, i) => {
                 const {
@@ -101,6 +96,18 @@ const ConcertForm = (props) => {
         }, (error) => {
             console.log(`YESFERAL: List: error: ${error}`);
         });
+
+        axiosDataSource.makeGetRequest(axiosDataSource.HTTP_CATEGORY_REQUEST_PATH, (response) => {
+            setCategoriesOptions(response.data.map((res, i) => {
+                const {
+                    _id,
+                    name,
+                } = res;
+                return { value: _id, label: `${name?.en} / ${name?.es}` }
+            }))
+        }, (error) => {
+            console.log(`YESFERAL: List: error: ${error}`);
+        });
     }, []);
 
     return (
@@ -127,13 +134,11 @@ const ConcertForm = (props) => {
                         <Field name="ticketing.url" component={FieldWithErrorMessageComponent} />
                         <Field name="links" component={ArrayViewRenderComponent} elements={values.links} />
                         <FormGroup>
-                            <FormLabel for="tags">Tags</FormLabel>
-                            <Field name="tags" component={MultiSelectComponent} options={tagOptions} />
-                            <ErrorMessage
-                                name="tags"
-                                className="d-block 
-                                invalid-feedback"
-                                component="span"
+                            <FormLabel for="categories">Categories</FormLabel>
+                            <Field
+                                name="categories"
+                                options={categoriesOptions}
+                                component={MultiSelectComponent}
                             />
                         </FormGroup>
                         <FormGroup>

@@ -18,7 +18,7 @@ class ConcertModel {
             url: null
         },
         links: [],
-        tags: [],
+        categories: [],
         venue: null,
         state: null,
         activities: [],

@@ -7,7 +7,7 @@ export const MultiSelectComponent = ({
     field, // { name, value, onChange, onBlur }
     form, // also values, setXXXX, handleXXXX, dirty, isValid, status, etc.
 }) => {
-    const filteredOptions = options.filter(val => field.value.includes(val.value))
+    const filteredOptions = options.filter(val => field.value?.includes(val.value))
 
     return <Select value={filteredOptions}
         isMulti
