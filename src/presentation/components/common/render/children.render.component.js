@@ -46,17 +46,21 @@ export const ChildrenRenderComponent = ({
         <div>
             <FormLabel for={`Children`}>Children Section</FormLabel>
             <Field name={`${field.name}.key`} component={FieldWithErrorMessageComponent} />
+            <FormLabel for={`${field.name}.filter`}>Filter</FormLabel>
             <Field
-                name={`${field.name}.filterBy.events`}
+                name={`${field.name}.filter.events`}
                 options={eventOptions}
                 component={MultiSelectComponent}
             />
             <Field
-                name={`${field.name}.filterBy.categories`}
+                name={`${field.name}.filter.categories`}
                 options={categoriesOptions}
                 component={MultiSelectComponent}
             />
-            <Field name={`${field.name}.sort`} component={FieldWithErrorMessageComponent} />
+            <FormLabel for={`${field.name}.sort`}>Sort</FormLabel>
+            <Field name={`${field.name}.sort`}
+                options={eventOptions}
+                component={MultiSelectComponent} />
             <Field name={`${field.name}.take`} component={FieldWithErrorMessageComponent} />
         </div>
     )
