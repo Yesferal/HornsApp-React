@@ -17,6 +17,7 @@ class ConcertModel {
             name: null,
             url: null
         },
+        isLiveMusicEvent: false,
         links: [],
         categories: [],
         venue: null,

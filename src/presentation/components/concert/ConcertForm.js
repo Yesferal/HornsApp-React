@@ -46,6 +46,7 @@ const ConcertForm = (props) => {
                 name: Yup.string().nullable(),
                 url: Yup.string().nullable(),
             }),
+            isLiveMusicEvent: Yup.boolean(),
             links: Yup.array(),
             categories: Yup.array().nullable(),
             venue: Yup.object().shape({
@@ -60,7 +61,7 @@ const ConcertForm = (props) => {
     const [venueOptions, setVenueOptions] = useState([]);
     const [statusOptions, setStatusOptions] = useState([]);
     const [categoriesOptions, setCategoriesOptions] = useState([]);
-    
+
     useEffect(() => {
         const axiosDataSource = new AxiosDataSource()
 
@@ -132,6 +133,10 @@ const ConcertForm = (props) => {
                         <Field name="headliner.url" component={PreviewImageComponent} />
                         <Field name="ticketing.name" component={FieldWithErrorMessageComponent} />
                         <Field name="ticketing.url" component={FieldWithErrorMessageComponent} />
+                        <label>
+                            <Field type="checkbox" name="isLiveMusicEvent" />
+                            Is LiveMusic Event
+                        </label>
                         <Field name="links" component={ArrayViewRenderComponent} elements={values.links} />
                         <FormGroup>
                             <FormLabel for="categories">Categories</FormLabel>
