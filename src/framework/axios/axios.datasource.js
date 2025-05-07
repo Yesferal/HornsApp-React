@@ -9,7 +9,7 @@ export class AxiosDataSource {
     HTTP_VENUE_REQUEST_PATH = "admin_venue"
     HTTP_STATE_REQUEST_PATH = "admin_state"
     HTTP_CATEGORY_REQUEST_PATH = "admin_category"
-    HTTP_REVIEW_REQUEST_PATH = "admin_screen_render"
+    HTTP_REVIEW_REQUEST_PATH = "admin_screen"
     HTTP_DRAWER_REQUEST_PATH = "admin_app_render"
 
     baseUrl = new Environment().BASE_URL;

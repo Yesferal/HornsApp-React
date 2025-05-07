@@ -33,10 +33,15 @@ const ConcertTableRow =
             });
         };
 
+        const eventTime = new Date(dateTime);
+        const now = new Date()
+        const hasPassed = eventTime < now;
+        const backgroundColor = hasPassed ? 'red' : 'white';
+
         return (
-            <tr>
+            <tr style={{ backgroundColor: backgroundColor, padding: '20px' }}>
                 <td>{name}</td>
-                <td>{dateTime}</td>
+                <td>{(eventTime.toLocaleDateString()) + " " + (eventTime.toLocaleTimeString())}</td>
                 <td>
                     <Link className="edit-link"
                         to={router.CONCERT_EDIT + "/" + _id}>
