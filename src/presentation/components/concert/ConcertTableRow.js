@@ -15,7 +15,8 @@ const ConcertTableRow =
         const {
             _id,
             name,
-            dateTime
+            dateTime,
+            isLiveMusicEvent,
         } = props.obj;
         const axiosDataSource = new AxiosDataSource()
         const router = new RouterNavigatorDataSource()
@@ -38,9 +39,14 @@ const ConcertTableRow =
         const hasPassed = eventTime < now;
         const backgroundColor = hasPassed ? 'red' : 'white';
 
+        var includeHornsApp = ""
+        if (isLiveMusicEvent) {
+            includeHornsApp = "(*)"
+        }
+
         return (
             <tr style={{ backgroundColor: backgroundColor, padding: '20px' }}>
-                <td>{name}</td>
+                <td>{name} {includeHornsApp}</td>
                 <td>{(eventTime.toLocaleDateString()) + " " + (eventTime.toLocaleTimeString())}</td>
                 <td>
                     <Link className="edit-link"
