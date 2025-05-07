@@ -84,7 +84,7 @@ const App = () => {
                 <Nav>
                   <Link to={router.REVIEW_LIST}
                     className="nav-link">
-                    ScreenRender
+                    Screens
                   </Link>
                 </Nav>
                 <Nav>
