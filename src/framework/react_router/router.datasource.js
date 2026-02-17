@@ -32,6 +32,13 @@ export class RouterNavigatorDataSource {
     CATEGORY_EDIT = '/edit-category'
 
     /**
+     * CARD SECTION
+     */
+    CARD_LIST = '/card-list'
+    CARD_CREATE = '/create-card'
+    CARD_EDIT = '/edit-card'
+
+    /**
      * REVIEW SECTION
      */
     REVIEW_LIST = '/review-list'

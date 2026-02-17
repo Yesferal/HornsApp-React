@@ -39,6 +39,10 @@ import CreateCategory from "./presentation/components/category/category.create.c
 import EditCategory from "./presentation/components/category/category.edit.component.js";
 import CategoryList from "./presentation/components/category/category.list.component.js";
 
+import CreateCard from "./presentation/components/card/card.create.component.js";
+import EditCard from "./presentation/components/card/card.edit.component.js";
+import CardList from "./presentation/components/card/card.list.component.js";
+
 // My App
 const App = () => {
   const router = new RouterNavigatorDataSource()
@@ -73,6 +77,12 @@ const App = () => {
                   <Link to={router.VENUE_LIST}
                     className="nav-link">
                     Venues
+                  </Link>
+                </Nav>
+                <Nav>
+                  <Link to={router.CARD_LIST}
+                    className="nav-link">
+                    Cards
                   </Link>
                 </Nav>
                 <Nav>
@@ -129,6 +139,12 @@ const App = () => {
                     element={<EditCategory />} />
                   <Route path={router.CATEGORY_LIST}
                     element={<CategoryList />} />
+                  <Route path={router.CARD_CREATE}
+                    element={<CreateCard />} />
+                  <Route path={router.CARD_EDIT + '/:id'}
+                    element={<EditCard />} />
+                  <Route path={router.CARD_LIST}
+                    element={<CardList />} />
                   <Route path={router.REVIEW_CREATE}
                     element={<CreateReview />} />
                   <Route path={router.REVIEW_EDIT + '/:id'}
