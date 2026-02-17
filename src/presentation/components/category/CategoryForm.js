@@ -31,6 +31,10 @@ const CategoryForm = (props) => {
                 en: Yup.string().required("Required"),
                 es: Yup.string().required("Required"),
             }),
+            description: Yup.object().shape({
+                en: Yup.string().required("Required"),
+                es: Yup.string().required("Required"),
+            }),
         });
 
     return (
@@ -40,6 +44,7 @@ const CategoryForm = (props) => {
                 <Form>
                     <Field name="key" component={FieldWithErrorMessageComponent} />
                     <Field name="name" component={LocalizedStringComponent} />
+                    <Field name="description" component={LocalizedStringComponent} />
                     <div>
                         &nbsp;
                     </div>
